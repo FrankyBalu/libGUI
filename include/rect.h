@@ -15,7 +15,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+#ifndef __LIBGUI_RECT__
+#define __LIBGUI_RECT__
 
 class cPoint {
 private:
@@ -60,4 +61,5 @@ public:
 	int getWidth ( void );
 	
 };
-	
+
+#endif //__LIBGUI_RECT__
