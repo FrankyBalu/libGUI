@@ -16,52 +16,46 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __BUTTON__
-#define __BUTTON__
+#ifndef __LIBGUI_BUTTON__
+#define __LIBGUI_BUTTON__
 
 #include <string>
 #include <SDL.h>
 #include "widget.h"
 
-
 namespace LIBGUI {
+
 
 class cButton : public cWidget
 {
 private:
-
-	/**
-	 *	This is in future maybe a own class
-	 */
-	SDL_Texture *_theme; //shade/theme of the button
-	SDL_Color _color1; //color of the button, not pressed
-	SDL_Color _color2; //color of the button, if pressed
-
-	std::string _label; //label of the button
-	SDL_Texture *_labelTex; //Rendered Text
-    SDL_Texture *_texture;
+	std::string 	_label;
+	SDL_Texture 	*_labelTex;
+	SDL_Texture		*_tex1, *_tex2;
+    SDL_Texture 	*_texture;
 
     bool load ( void );
 public:
 
-	                cButton ( cWidget *parent, std::string label = "std Button", std::string ID = "Button" );
+	                cButton 	( cWidget *parent, std::string label = "std Button", std::string ID = "Button" );
 
-    SDL_Renderer* getRenderer ( void );
-	  cRect         getMySize   ( void );
-	  bool          addChild    ( cWidget* child ){}
-	  void          (*onKlick)  ( void );
-    void          (*onPressed)( void );
-    void          (*onSlideH) ( void );
-    void          (*onSlideV) ( void );
-    void          (*onRelease)( void );
-    void          setSize     ( cRect size );
+	SDL_Renderer* 	getRenderer ( void );
+	cRect         	getMySize   ( void );
+	bool          	addChild    ( cWidget* child ){}
+	void 			changeSize 	( cRect newSize );
+	void          	(*onKlick)  ( void );
+    void          	(*onPressed)( void );
+    void          	(*onSlideH) ( void );
+    void          	(*onSlideV) ( void );
+    void          	(*onRelease)( void );
+    void          	setSize     ( cRect size );
 	  //Drawing
-    void          draw        ( void );
-	  void          update      ( sEvent event );
+    void          	draw        ( void );
+	void          	update      ( sEvent event );
 
     
 };
 	
-}
+}//namespace LIBGUI
 
-#endif //__PICTURE_WIDGET__
+#endif //__LIBGUI_BUTTON__

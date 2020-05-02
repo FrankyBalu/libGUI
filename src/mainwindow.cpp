@@ -63,7 +63,7 @@ void cMainWindow::_init ( int posX, int posY, int width, int height, int flags, 
 	_hold = false;
 	_buttonDown = false;
 	_startTime = 0;
-	_klickTime = 70;
+	_klickTime = 100;
 	_holdTime = 200;
 	_xStart = 0;
 	_xRel = 0;
@@ -113,8 +113,7 @@ void cMainWindow::update ( sEvent event )
 	_updateEvent ();
 	if( _sEvent.type == QUIT )
     {
-    	SPDLOG_DEBUG ("QUIT EVENT");
-        _isOpen = false;
+    	_isOpen = false;
         return;
     }
     if ( _child != nullptr )
@@ -152,14 +151,11 @@ void cMainWindow::setSize ( cRect size )
 
 bool cMainWindow::addChild ( cWidget* child )
 {
-	if ( child == nullptr)
-		std::cout << "da ist der fehler\n";
 	if ( _child != nullptr )
 	{
 		SPDLOG_ERROR ("Window has a child");
 		return false;
 	}
-	std::cout <<"kind hinzugefügt\n";
 	_child = child;
 	_child->setSize ( _rect );
 	return true;
@@ -179,18 +175,20 @@ void cMainWindow::_updateEvent ( void )
 {
 	if ( _sEvent.type == KLICKED )
     {
-        _sEvent.type = NOEVENT;
+    	_sEvent.type = NOEVENT;
     }
     if ( _buttonDown && _sType != NONE )
     {
-        _sEvent.type = NOEVENT;
+    	_sEvent.type = NOEVENT;
 		_xRel = 0;
 		_yRel = 0;
     }
     if ( _buttonDown && _sType == NONE && SDL_GetTicks()-_startTime > _klickTime )
     {
     	if ( _hold )
+    	{
 	    	_sEvent.type = NOEVENT;
+	    }
 		else
 		{
 			_sEvent.type = HOLD;
@@ -211,13 +209,13 @@ void cMainWindow::_updateEvent ( void )
       		_buttonDown = true;
       		SDL_GetMouseState( &_xStart, &_yStart );
       		_xNow = _xStart;
-      		_yNow = _yNow;
-    	}
+      		_yNow = _yStart;
+      	}
     	else if ( _event.type == SDL_MOUSEBUTTONUP )
     	{
     		if ( SDL_GetTicks() - _startTime <= _klickTime )
       		{
-        		_sEvent.type = KLICKED;
+      			_sEvent.type = KLICKED;
         		_startTime = 0;
       		}
       		_buttonDown = false;
@@ -231,7 +229,7 @@ void cMainWindow::_updateEvent ( void )
     	}
     	else if  ( _buttonDown && _event.type == SDL_MOUSEMOTION )
     	{
-      		SDL_GetMouseState( &_xNow, &_yNow );
+    		SDL_GetMouseState( &_xNow, &_yNow );
 
       		if ( _sType == NONE )
       		{
@@ -272,6 +270,7 @@ void cMainWindow::_updateEvent ( void )
 	_sEvent.y = _yNow;
   	_sEvent.relX = _xRel;
   	_sEvent.relY = _yRel;
+  	_sEvent.down = _buttonDown;
 }
 
 

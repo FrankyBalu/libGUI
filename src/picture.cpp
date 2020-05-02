@@ -1,5 +1,5 @@
 /*
- * picture_widget.cpp
+ * picture.cpp
  * Copyright (C) 2020 Frank Kurbatsch <frank.kurbatsch@gmail.com>
  *
  * libGUI is free software: you can redistribute it and/or modify it
@@ -74,4 +74,9 @@ cRect cPicture::getMySize ( void )
 	//only avlaible if a widget can have a child
 }
 
+void cPicture::changeSize ( cRect newSize )
+{
+	_rect.setPos ( newSize.getPosX(), newSize.getPosY());
+	_rect.setSize ( newSize.getWidth(), newSize.getHeight());
+}
 }

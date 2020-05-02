@@ -1,5 +1,5 @@
 /*
- * picture_widget.cpp
+ * button.cpp
  * Copyright (C) 2020 Frank Kurbatsch <frank.kurbatsch@gmail.com>
  * 
  * libGUI is free software: you can redistribute it and/or modify it
@@ -21,20 +21,21 @@
 #define SPDLOG_DEBUG_ON
 #define SPDLOG_TRACE_ON
 #include <iostream>
-#include "../include/mainwindow.h"
-#include "../include/rect.h"
-#include "../include/button.h"
-#include "../include/event.h"
 #include <spdlog/spdlog.h>
 
+#include "../include/rect.h"
+#include "../include/event.h"
+#include "../include/mainwindow.h"
+#include "../include/button.h"
 
 namespace LIBGUI {
 
+
 cButton::cButton ( cWidget *parent, std::string label, std::string ID )
 {
-	_ID = ID;
-	_parent = parent;
-	_texture = nullptr;
+	_ID 		= ID;
+	_parent 	= parent;
+	_texture 	= nullptr;
 	_parent->addChild ( this );
 	load ();
 }
@@ -48,27 +49,51 @@ void cButton::setSize ( cRect size )
 
 void cButton::update ( sEvent event )
 {
+	if ( event.down )
+	{
+		_texture = _tex2;
+	}
+	else
+	{
+		_texture = _tex1;
+	}
 	if ( event.type == KLICKED )
-		onKlick();
+	{
+			onKlick ();
+	}
 	if ( event.type == HOLD )
-		onPressed();
+	{
+			onPressed();
+	}
 }
 
 bool cButton::load ( void )
 {
-	_texture = IMG_LoadTexture ( _parent->getRenderer(), "/opt/sample/button.png" );
-	if ( _texture == nullptr)
+	_tex1 = IMG_LoadTexture ( _parent->getRenderer(), "/opt/sample/button.png" );
+	if ( _tex1 == nullptr)
+	{
+		SPDLOG_ERROR ("Can't load Texture ({}): {}", _ID, SDL_GetError());
+		return false;
+	}
+	_tex2 = IMG_LoadTexture ( _parent->getRenderer(), "/opt/sample/button2.png" );
+	if ( _tex2 == nullptr)
 	{
 		SPDLOG_ERROR ("Can't load Texture ({}): {}", _ID, SDL_GetError());
 		return false;
 	}
 	SPDLOG_INFO ("Load Texture ({}) successfull", _ID);
+	_texture = _tex1;
 	return true;
 }
 
 void cButton::draw ( void )
 {
-	SDL_RenderCopy ( _parent->getRenderer(), _texture, NULL, NULL );
+	SDL_Rect rect;
+	rect.x = _rect.getPosX();
+	rect.y = _rect.getPosY();
+	rect.h = _rect.getHeight();
+	rect.w = _rect.getWidth();
+	SDL_RenderCopy ( _parent->getRenderer(), _texture, NULL, &rect );
 }
 
 SDL_Renderer* cButton::getRenderer ( void )
@@ -80,5 +105,12 @@ cRect cButton::getMySize ( void )
 {
 	return _rect;
 }
+
+void cButton::changeSize ( cRect rect )
+{
+	_rect.setPos ( rect.getPosX(), rect.getPosY());
+	_rect.setSize ( rect.getWidth(), rect.getHeight());
+}
+
 
 }

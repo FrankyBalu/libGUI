@@ -29,31 +29,27 @@ namespace LIBGUI {
 
 class cWidget {
 protected:
-	  cRect _rect;
-	  std::string _ID;
-	  cWidget *_parent;
-	  cWidget *_child;
+	cRect _rect;
+	std::string _ID;
+	cWidget *_parent;
+	cWidget *_child;
     SDL_Renderer *_renderer;
-    //sEvent *event;
-
+    
 
 public:
-	  virtual SDL_Renderer* getRenderer ( void ) = 0;
-	  virtual cRect getMySize ( void ) = 0;
-	  virtual bool addChild ( cWidget* child ) = 0;
-    virtual void setSize ( cRect size ) = 0;
+	virtual SDL_Renderer* 	getRenderer ( void ) = 0;
+	virtual cRect 			getMySize 	( void ) = 0;
+	virtual bool 			addChild 	( cWidget* child ) = 0;
+    virtual void 			setSize 	( cRect size ) = 0;
+	virtual void 			changeSize 	( cRect newSize ) = 0;
+	virtual void 			update 		( sEvent event ) = 0;
+	virtual void 			draw 		( void ) = 0;
 
-
-    void (*onKlick) ( void );
-    void (*onPressed) ( void );
-    void (*onSlideH) ( void );
-    void (*onSlideV) ( void );
-    void (*onRelease)( void );
-
-    //Event handling
-    virtual void update ( sEvent event ) = 0;
-	  //Drawing
-    virtual void draw ( void ) = 0;
+    void 	(*onKlick) 		( void );
+    void 	(*onPressed) 	( void );
+    void 	(*onSlideH) 	( void );
+    void 	(*onSlideV) 	( void );
+    void 	(*onRelease)	( void );
 
 };
 

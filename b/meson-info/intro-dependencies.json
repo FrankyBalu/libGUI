@@ -1,0 +1,1 @@
+[{"name": "sdl2", "version": "2.0.12", "compile_args": ["-I/usr/include/SDL2", "-D_REENTRANT"], "link_args": ["-pthread", "/usr/lib/libSDL2.so"]}, {"name": "SDL2_image", "version": "2.0.5", "compile_args": ["-I/usr/include/SDL2", "-D_REENTRANT"], "link_args": ["/usr/lib/libSDL2_image.so", "-pthread", "/usr/lib/libSDL2.so"]}]

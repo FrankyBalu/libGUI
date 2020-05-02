@@ -1,5 +1,5 @@
 /*
- * event.cpp
+ * event.h
  * Copyright (C) 2020 Frank Kurbatsch <frank.kurbatsch@gmail.com>
  *
  * libGUI is free software: you can redistribute it and/or modify it
@@ -24,20 +24,18 @@
 
 namespace LIBGUI {
 
+
 typedef enum EVENTTYPE { NOEVENT, KLICKED, HOLD, SLIDEHORIZONTAL, SLIDEVERTICAL, QUIT } EVENTTYPE;
 
 
-
 typedef struct sEvent {
-  EVENTTYPE type;
-  int x;
-  int y;
-  int relX;
-  int relY;
+	EVENTTYPE type;
+  	int x;
+  	int y;
+  	int relX;
+  	int relY;
+  	bool down;
 } sEvent;
-
-
-
 
 
 } //namespace LIBGUI

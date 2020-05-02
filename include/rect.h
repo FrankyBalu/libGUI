@@ -1,5 +1,5 @@
 /*
- * header.h
+ * rect.h
  * Copyright (C) 2020 Frank Kartheuser <frank.kurbatsch@gmail.com>
  *
  * libGUI is free software: you can redistribute it and/or modify it
@@ -18,48 +18,54 @@
 #ifndef __LIBGUI_RECT__
 #define __LIBGUI_RECT__
 
+namespace LIBGUI {
+
+
 class cPoint {
 private:
-	int _x;
-	int _y;
+	int 	_x;
+	int 	_y;
 public:
-	cPoint ();
-	cPoint ( int x, int y);
-	~cPoint ();
+			cPoint 	();
+			cPoint 	( int x, int y);
+			~cPoint ();
 	
-	void setPosX ( int x );
-	void setPosY ( int y );
-	void setPos  ( int x, int y);
+	void 	setPosX ( int x );
+	void	setPosY ( int y );
+	void 	setPos  ( int x, int y);
 	
-	int getPosX ( void );
-	int getPosY ( void );
+	int 	getPosX ( void );
+	int 	getPosY ( void );
 };
+
 
 class cRect {
 private:
-	cPoint _point;
-	int _width;
-	int _height;
+	cPoint 	_point;
+	int 	_width;
+	int 	_height;
 	
 public:
-	cRect ( void );
-	cRect ( int x, int y, int width=1, int height=1 );
-	cRect ( cPoint point, int width=1, int height=1 );
+			cRect 		( void );
+			cRect 		( int x, int y, int width=1, int height=1 );
+			cRect 		( cPoint point, int width=1, int height=1 );
 	
-	void setPosX ( int x );
-	void setPosY ( int y );
-	void setPos  ( int x, int y );
-	void setPos  ( cPoint point );
-	void setWidth ( int width );
-	void setHeight ( int height );
-	void setSize  ( int width, int height );
+	void 	setPosX 	( int x );
+	void 	setPosY 	( int y );
+	void 	setPos  	( int x, int y );
+	void 	setPos  	( cPoint point );
+	void 	setWidth 	( int width );
+	void 	setHeight 	( int height );
+	void 	setSize  	( int width, int height );
 	
-	cPoint getPos ( void );
-	int getPosX ( void );
-	int getPosY ( void );
-	int getHeight ( void );
-	int getWidth ( void );
+	cPoint 	getPos 		( void );
+	int 	getPosX 	( void );
+	int 	getPosY 	( void );
+	int 	getHeight 	( void );
+	int 	getWidth 	( void );
 	
 };
+
+}//namespace LIBGUI
 
 #endif //__LIBGUI_RECT__

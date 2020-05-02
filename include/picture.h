@@ -1,5 +1,5 @@
 /*
- * picture_widget.h
+ * picture.h
  * Copyright (C) 2020 Frank Kurbatsch <frank.kurbatsch@gmail.com>
  *
  * libGUI is free software: you can redistribute it and/or modify it
@@ -16,8 +16,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __PICTURE__
-#define __PICTURE__
+#ifndef __LIBGUI_PICTURE__
+#define __LIBGUI_PICTURE__
 
 #include <SDL2/SDL.h>
 #include "widget.h"
@@ -27,26 +27,30 @@
 
 namespace LIBGUI {
 
+
 class cPicture : public cWidget {
 private:
-    std::string   _filePath;
-	  SDL_Texture*  _texture;
+	std::string   	_filePath;
+	SDL_Texture*  	_texture;
 
 public:
-	  SDL_Renderer* getRenderer ( void );
-	  cRect         getMySize   ( void );
-    void          draw        ( void );
-	  bool          addChild    ( cWidget* child ){return false;}
-    void          update      ( sEvent event );
-    void          (*onKlick)  ( void );
-    void          (*onPressed)( void );
-    void          (*onSlideH) ( void );
-    void          (*onSlideV) ( void );
-    void          setSize (cRect rect) {}
-	                cPicture    ( cWidget* parent, std::string file, std::string id = "PictureWidget" );
-		bool          load        ( void );
+					cPicture    	( cWidget* parent, std::string file, std::string id = "PictureWidget" );
+	SDL_Renderer* 	getRenderer 	( void );
+	cRect         	getMySize   	( void );
+	void          	draw        	( void );
+	bool          	addChild    	( cWidget* child ){return false;}
+	void 			changeSize 		( cRect newSize );
+    void          	update      	( sEvent event );
+    void          	(*onKlick)  	( void );
+    void          	(*onPressed)	( void );
+    void          	(*onSlideH) 	( void );
+    void          	(*onSlideV) 	( void );
+    void          	setSize 		(cRect rect) {}
+	bool          	load        	( void );
 
 };
-}
 
-#endif //__PICTURE__
+
+}//namespace LIBGUI
+
+#endif //__LIBGUI_PICTURE__
