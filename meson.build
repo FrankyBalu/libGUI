@@ -32,13 +32,38 @@ sources = files(
 	'src/topbar.cpp'
   )
 
+incfiles = files( 
+	'include/basicrendertext.h',
+	'include/hbox.h',
+	'include/point.h',
+	'include/rect.h',
+	'include/texture.h',
+	'include/vbox.h',
+	'include/widget.h',
+	'include/event.h',
+	'include/log.h',
+	'include/pushbutton.h',
+	'include/renderer.h',
+	'include/topbar.h',
+	'include/video.h',
+	'include/window.h'
+)
+
+inc = include_directories('include')
+
 libGUI = shared_library(
   'libGUI-0',
 #  meson.project_name(),
   sources,
   version : '0.0.0',
   cpp_args : '-D_PRIVATELIBGUI -g',
-  dependencies: [sdl_dep]
+  dependencies: [sdl_dep],
+  install : true
 )
 
-subdir ('test')
+pkg_mod = import('pkgconfig')
+pkg_mod.generate(libraries : libGUI,
+                 version : '0.0.a', name : 'libGUI', filebase : 'libGUI', subdirs : 'libGUI' ,description : 
+                 'A SDL2 based GUI-library')
+install_headers(incfiles, subdir : 'libGUI')
+

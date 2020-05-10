@@ -94,7 +94,7 @@ void VBox::ProcessEvent ( Event *event )
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
 		std::cout << "auch hier 2" << _ID.c_str() << std::endl;
-		std::cout << "X:"
+		std::cout << "X:" << event->X << "x" << event->Y << std::endl;
 		if ( _ChildRect[element.first].PointIsIn ( Point (event->X, event->Y)))
 		{
 			std::cout << "auch hier 3" << _ID.c_str() << std::endl;
