@@ -1,59 +1,42 @@
-/*
- * rect_test.cpp
- * Copyright (C) 2020 Frank Kartheuser <frank.kurbatsch@gmail.com>
- * 
- * libGUI is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * libGUI is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
- 
-#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
-#define SPDLOG_DEBUG_ON
-#define SPDLOG_TRACE_ON
-
-#include <iostream>
 #include "../include/rect.h"
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/rotating_file_sink.h>
- 
- 
-int main ( int argc, char *argv[] )
+#include "../include/point.h"
+#include <iostream>
+
+int main ()
 {
-	auto file_logger = spdlog::rotating_logger_mt("rect_test", "logs/test_rect.log", 1048576 * 5, 5);
-    spdlog::set_default_logger(file_logger);
-    spdlog::set_level(spdlog::level::debug);
-    spdlog::set_pattern("[%T] %l:\n   file: %@\n      func: [%!]:\n         %v%$");
-    SPDLOG_DEBUG ("      libGUI\n    rect_test");
-	//Tests of point-class
-	LIBGUI::cPoint point1;
-	LIBGUI::cPoint point2( 30, 60 );
-	LIBGUI::cRect rect1;
-	LIBGUI::cRect rect2 ( 20, 20, 10, 100);
-	LIBGUI::cRect rect3 ( 50, 50);
-	LIBGUI::cRect rect4 (point1, 30, 30);
+	std::cout << "Teste LIBGUI::RECT" << std::endl;
+	LIBGUI::Rect rectA;
+	LIBGUI::Rect rectB ( 3,3, 10, 20 );
+	LIBGUI::Point pointA(20,20);
 	
-	point1.setPosX ( 10 );
-	point1.setPosY ( 10 );
-	point2.setPos  ( 40, 40 );
-	rect1.setPosX ( 20 );
-	rect1.setPosY ( 20 );
-	rect2.setPos ( 80, 80 );
-	rect3.setPos ( point2 );
-	rect4.setHeight ( 100 );
-	rect4.setWidth ( 100 );
-	rect4.setSize ( 200, 200 );
-		
+	std::cout << "Rect A:" << std::endl;
+	std::cout << "\tX: " << rectA.getX() << std::endl;
+	std::cout << "\tY: " << rectA.getY() << std::endl;
+	std::cout << "\tW: " << rectA.getW() << std::endl;
+	std::cout << "\tH: " << rectA.getH() << std::endl;
+	std::cout << "Rect B:" << std::endl;
+	std::cout << "\tX: " << rectB.getX() << std::endl;
+	std::cout << "\tY: " << rectB.getY() << std::endl;
+	std::cout << "\tW: " << rectB.getW() << std::endl;
+	std::cout << "\tH: " << rectB.getH() << std::endl;
+	std::cout << "Point A:" << std::endl;
+	std::cout << "\tX: " << pointA.getX() << std::endl;
+	std::cout << "\tY: " << pointA.getY() << std::endl;
+	std::cout << std::endl << std::endl;
 	
-	
-	return 0;
+	std::cout << "Rect B wird gleich Rect A" << std::endl;
+	std::cout << "Rect A wird Point A zugewiesen" << std::endl << std::endl;
+	rectB = rectA;
+	rectA = pointA;
+	std::cout << "Rect A:" << std::endl;
+	std::cout << "\tX: " << rectA.getX() << std::endl;
+	std::cout << "\tY: " << rectA.getY() << std::endl;
+	std::cout << "\tW: " << rectA.getW() << std::endl;
+	std::cout << "\tH: " << rectA.getH() << std::endl;
+	std::cout << "Rect B:" << std::endl;
+	std::cout << "\tX: " << rectB.getX() << std::endl;
+	std::cout << "\tY: " << rectB.getY() << std::endl;
+	std::cout << "\tW: " << rectB.getW() << std::endl;
+	std::cout << "\tH: " << rectB.getH() << std::endl;
 	
 }

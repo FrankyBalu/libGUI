@@ -1,109 +1,150 @@
-/*
- * vbox.cpp
- * Copyright (C) 2020 Frank Kurbatsch <frank.kurbatsch@gmail.com>
- * 
- * libGUI is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * libGUI is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
- 
- 
-#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
-#define SPDLOG_DEBUG_ON
-#define SPDLOG_TRACE_ON
-#include <iostream>
-#include "../include/mainwindow.h"
-#include "../include/rect.h"
-#include "../include/button.h"
-#include "../include/event.h"
 #include "../include/vbox.h"
-#include <spdlog/spdlog.h>
-
-
+#include "../include/log.h"
+#include <iostream>
 namespace LIBGUI {
 
-cVBox::cVBox ( cWidget *parent, std::string ID )
+
+VBox::VBox ( Widget *parent, std::string ID )
 {
 	_ID = ID;
-	_parent = parent;
-	_parent->addChild ( this );
-	_count = 0;
+	_Parent = parent;
+	_Renderer = _Parent->GetRenderer();
+	_ChildCount = 0;
+	_FixW = false;
+	_FixH = false;
+	_Parent->AddChild( this, ID );
+}
+	
+Renderer* VBox::GetRenderer ( void )
+{
+	return _Renderer;
 }
 
-void cVBox::setSize ( cRect size )
+Rect VBox::GetSize ( void )
 {
-	_rect.setPos  ( size.getPosX (), size.getPosY () );
-	_rect.setSize  ( size.getWidth (), size.getHeight() );
+	return _Rect;
 }
 
-
-void cVBox::update ( sEvent event )
+bool VBox::AddChild ( Widget *child, std::string ID )
 {
-	for ( int i = 0; i < _count; i++)
+	if ( _Child.count (ID) > 0)
 	{
-		if ( (_rects[i]->getPosY() < event.y &&
-			 (_rects[i]->getPosY() + _rects[i]->getHeight()) > event.y) )
-		{
-			_childs[i]->update (event);
-		}
-				
+		LOG->ERROR (LOG_CATEGORY_LIBGUI,"Ein Widget mit der ID: %s gibt es schon im Fenster: %s", ID.c_str(), _ID.c_str());
+		return false;
 	}
-}
-
-void cVBox::draw ( void )
-{
-	for ( int i = 0; i < _count; i++)
-	{
-		_childs[i]->draw();
-	}
-}
-
-SDL_Renderer* cVBox::getRenderer ( void )
-{
-	_parent->getRenderer ();
-}
-
-cRect cVBox::getMySize ( void )
-{
-	return _rect;
-}
-
-bool cVBox::addChild ( cWidget *child )
-{
-	_childs[_count]=child;
-	_count++;
+	LOG->INFO (LOG_CATEGORY_LIBGUI, "Füge (%s) zu VBox (%s) hinzu", ID.c_str(), _ID.c_str());
+	Rect rect;
+	rect = _Rect;
+	Point off;
+	_Child[ID] = child;
+	//TODO _ChildCount kann sicher ersetzt werden map.size() oder sowas
+	rect.SetH ( _Rect.GetH() / (_ChildCount +1) );
+	off.SetX ( _Offset.GetX() );
+	int i = 0;
 	int h;
-	h = _rect.getHeight() / _count;
-	cRect rect;
-	rect.setPosX (_rect.getPosX());
-	rect.setPosY (_rect.getPosY());
-	rect.setWidth (_rect.getWidth());
-	rect.setHeight (h);
-	
-	for ( int i = 0; i < _count; i++ )
+	//neue größe für jedes Element setzen
+	for (std::pair<std::string,Widget*> element : _Child)
 	{
-		_childs[i]->setSize ( rect );
-		_rects[i] = new cRect ( rect.getPos(),rect.getWidth(), rect.getHeight() );
-		rect.setPosY ( rect.getPosY()+rect.getHeight());
+		if ( i == 0 )
+		{
+			off.SetY ( _Offset.GetY());				
+		}
+		else
+		{
+			off.SetY ( _Offset.GetY() + ( rect.GetH()*i));
+		}
+		LOG->DEBUG (LOG_CATEGORY_LIBGUI, "%s _Child:", element.first.c_str());
+		element.second->ChangeSize (rect);
+		element.second->ChangeOffset (off);
+		_ChildRect[element.first].SetY (off.GetY());
+		_ChildRect[element.first].SetW (rect.GetW());
+		_ChildRect[element.first].SetH (rect.GetH());
+		i++;
 	}
-	
+	_ChildCount++;
+	LOG->INFO (LOG_CATEGORY_LIBGUI, "...Erfolgreich");
+	return true;
 }
 
-
-void cVBox::changeSize ( cRect newSize )
+bool VBox::ChangeChild ( std::string ID )
 {
 }
 
+void VBox::ChangeSize ( Rect rect )
+{
+	Rect tmp =_Rect;	
+	_Rect = rect;
+	Rect rec = rect;
+	rect.SetH ( _Rect.GetH() / (_ChildCount +1) );
+	
+	int i = 0;
+	//neue größe für jedes Element setzen
+	for (std::pair<std::string,Widget*> element : _Child)
+	{
+		element.second->ChangeSize (rec);
+		_ChildRect[element.first].SetH (rec.GetH());
+		i++;
+	 }
+}
+
+void VBox::ProcessEvent ( Event *event )
+{
+	event->data = _Parent;
+			std::cout << "auch hier " << _ID.c_str() << std::endl;
+	for (std::pair<std::string,Widget*> element : _Child)
+	{
+		std::cout << "auch hier 2" << _ID.c_str() << std::endl;
+		std::cout << "X:"
+		if ( _ChildRect[element.first].PointIsIn ( Point (event->X, event->Y)))
+		{
+			std::cout << "auch hier 3" << _ID.c_str() << std::endl;
+			element.second->ProcessEvent (event);
+		}
+	}
+}
+	
+bool VBox::Draw (void )
+{
+	for (std::pair<std::string,Widget*> element : _Child)
+	{
+		element.second->Draw ();
+	}
+	return true;
+}
+
+void VBox::Update ( void )
+{}
+
+void VBox::ChangeOffset ( Point offset )
+{
+	_Offset = offset;
+	Point off;
+	off.SetX ( _Offset.GetX() );
+	int i = 0;
+	//neue größe für jedes Element setzen
+	for (std::pair<std::string,Widget*> element : _Child)
+	{
+		if ( i == 0 )
+		{
+			off.SetY ( _Offset.GetY());				
+		}
+		else
+		{
+			off.SetY ( _Offset.GetY() + ( _Rect.GetH()*i));
+		}
+		element.second->ChangeOffset (off);
+		_ChildRect[element.first].SetY (off.GetY());
+		i++;
+	 }
+}
+
+Point	VBox::GetOffset	( void )
+{
+	return _Offset;
 }
 
 
 
+
+
+}//namespace LIBGUI

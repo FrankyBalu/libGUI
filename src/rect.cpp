@@ -1,156 +1,118 @@
-/*
- * rect.cpp
- * Copyright (C) 2020 Frank Kurbatsch <frank.kurbatsch@gmail.com>
- * 
- * libGUI is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * libGUI is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
-#define SPDLOG_DEBUG_ON
-#define SPDLOG_TRACE_ON
-#include <iostream>
 #include "../include/rect.h"
-#include <spdlog/spdlog.h>
+#include <SDL2/SDL.h>
+#include <iostream>
 
 namespace LIBGUI {
 
-
-cPoint::cPoint ( void )
+Rect::Rect ( void )
+:Point ( )
 {
-	_x = 0;
-	_y = 0;
+	_w = 0;
+	_h = 0;
 }
- 
-cPoint::cPoint ( int x, int y )
+
+Rect::Rect ( Point p, int w, int h )
 {
-	_x=x;
-	_y=y;
+	_x = p.GetX();
+	_y = p.GetY();
+	_w = w;
+	_h = h;
 }
 
-cPoint::~cPoint ( void )
+Rect::Rect ( int x, int y, int w, int h )
+: Point ( x, y )
+{
+	_w = w;
+	_h = h;
+}
+
+Rect::~Rect()
 {
 
 }
 
-void cPoint::setPosX ( int x )
+
+int Rect::GetW ( void )
 {
-	_x = x;
+	return _w;
 }
 
-void cPoint::setPosY ( int y )
+int Rect::GetH ( void )
 {
-	_y = y;
+	return _h;
 }
 
-void cPoint::setPos ( int x, int y )
+
+void Rect::SetW ( int w )
 {
-	_x = x;
-	_y = y;
+	_w = w;
 }
 
-int cPoint::getPosX ( void )
+void Rect::SetH ( int h )
 {
-	return _x;
+	_h = h;
 }
 
-int cPoint::getPosY ( void )
+
+void Rect::SetSize ( int w, int h )
 {
-	return _y;
+	_w = w;
+	_h = h;
 }
 
-
-
-cRect::cRect ( void )
+	
+bool Rect::PointIsIn ( Point p )
 {
-	_width = 1;
-	_height = 1;
+	if ( (p.GetX() > _x && p.GetX() < (_x + _w )) &&
+		 (p.GetY() > _y && p.GetY() < (_y + _h )))
+		 return true;
+	else
+		return false;
 }
 
-cRect::cRect ( int x, int y, int width, int height )
+bool Rect::HasIntersection ( Rect& r )
 {
-	_point.setPos ( x, y );
-	_width = width;
-	_height = height;	
+	SDL_Rect a,b;
+	a.x = _x;
+	a.y = _y;
+	a.h = _h;
+	a.w = _w;
+	a.x = r.GetX();
+	a.y = r.GetY();
+	a.h = r.GetH();
+	a.w = r.GetW();
+	
+	return SDL_HasIntersection ( &a, &b );
 }
-
-cRect::cRect ( cPoint point, int width, int height )
+	
+/*const Rect &Rect::operator= ( const Point &rhs)
 {
-	_point.setPos ( point.getPosX(), point.getPosY() );
-	_width = width;
-	_height = height;	
-}
+	int x = rhs.GetX();
+	int y = rhs.GetY();
+	this->_x = x;
+	this->_y = y;
+	return *this;
+}*/
 
-
-void cRect::setPosX ( int x )
+Rect &Rect::operator= ( const Rect &rhs)
 {
-	_point.setPosX ( x );
+	_x = rhs._x;
+	_y = rhs._y;
+	_w = rhs._w;
+	_h = rhs._h;
+	return *this;
 }
 
-void cRect::setPosY ( int y )
+bool Rect::operator==(const Rect& rhs)
 {
-	_point.setPosY ( y );
+	if ( ( _x == rhs._x) &&
+			( _y == rhs._y ) &&
+		 ( _w == rhs._w ) &&
+		 ( _h == rhs._h ))
+		 return true;
+	else
+		return false; 
 }
 
-void cRect::setPos ( int x, int y )
-{
-	_point.setPos ( x, y );
-}
-
-void cRect::setPos ( cPoint point )
-{
-	_point.setPos ( point.getPosX(), point.getPosY() );
-}
-
-void cRect::setWidth ( int width )
-{
-	_width = width;
-}
-
-void cRect::setHeight ( int height )
-{
-	_height = height;
-}
-
-void cRect::setSize ( int width, int height )
-{
-	_width = width;
-	_height = height;
-}
-
-cPoint cRect::getPos ( void )
-{
-	return _point;
-}
-
-int cRect::getPosX ( void )
-{
-	return _point.getPosX();
-}
-
-int cRect::getPosY ( void )
-{
-	return _point.getPosY();
-}
-
-int cRect::getHeight ( void )
-{
-	return _height;
-}
-
-int cRect::getWidth ( void )
-{
-	return _width;
-}
-
-}
+	
+} //namespace LIBGUI

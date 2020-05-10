@@ -1,5 +1,5 @@
-#ifndef __LIBGUI_HBOX__
-#define __LIBGUI_HBOX__
+#ifndef __LIBGUI_TopBar__
+#define __LIBGUI_TopBar__
 
 #include "widget.h"
 #include <string>
@@ -13,16 +13,15 @@
 namespace LIBGUI {
 
 
-class HBox : public Widget {
+class TopBar : public Widget {
 protected:
 	std::map<std::string,Widget*> _Child;
 	std::map<std::string,Rect> _ChildRect;
 	int _ChildCount;
-	bool _FixW;
-	bool _FixH;
+	int _FixH;
 	
 public:		
-	HBox ( Widget *parent, std::string ID );
+	TopBar ( Widget *parent, std::string ID, int height );
 	
 	Renderer* GetRenderer ( void );
 	Rect	GetSize	( void );
@@ -34,8 +33,8 @@ public:
 	void Update ( void );
 	void	ChangeOffset( Point offset );
 	Point	GetOffset	( void );
-	bool		IsFixedH		( void ){return _FixH;}
-	bool		IsFixedW		( void ){return _FixW;}
+	bool		IsFixedH		( void ){}
+	bool		IsFixedW		( void ){}
 	
 
 	void ( *onClick )	( void *data );
@@ -49,4 +48,4 @@ public:
 
 }//namespace LIBGUI
 
-#endif //__LIBGUI_VBOX__
+#endif //__LIBGUI_TopBar__

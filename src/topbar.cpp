@@ -1,31 +1,30 @@
-#include "../include/hbox.h"
+#include "../include/topbar.h"
 #include "../include/log.h"
 
 namespace LIBGUI {
 
-HBox::HBox ( Widget *parent, std::string ID )
+TopBar::TopBar ( Widget *parent, std::string ID, int height )
 {
 	_ID = ID;
 	_Parent = parent;
 	_Renderer = _Parent->GetRenderer();
 	_ChildCount = 0;
-	_FixW = false;
-	_FixH = false;
-	
+	_Rect.SetH ( height );
+	_FixH = height;
 	_Parent->AddChild( this, ID );
 }
 	
-Renderer* HBox::GetRenderer ( void )
+Renderer* TopBar::GetRenderer ( void )
 {
 	return _Renderer;
 }
 
-Rect HBox::GetSize	( void )
+Rect TopBar::GetSize	( void )
 {
 	return _Rect;
 }
 
-bool HBox::AddChild	( Widget *child, std::string ID )
+bool TopBar::AddChild	( Widget *child, std::string ID )
 {
 	if ( _Child.count (ID) > 0)
 	{
@@ -53,66 +52,72 @@ bool HBox::AddChild	( Widget *child, std::string ID )
 			off.SetX ( _Offset.GetX() + ( rect.GetW()*i));
 		}
 		LOG->DEBUG (LOG_CATEGORY_LIBGUI, "%s _Child:", element.first.c_str());
+		std::cout << element.first << " X: " << off.GetX()<< " Y: " << off.GetY()<< " W: " << rect.GetW()<< " H: " << rect.GetH() << std::endl;
 		element.second->ChangeSize (rect);
 		element.second->ChangeOffset (off);
 		_ChildRect[element.first].SetX (off.GetX());
 		_ChildRect[element.first].SetW (rect.GetW());
 		_ChildRect[element.first].SetH (rect.GetH());
 		i++;
+		
 	}
 	_ChildCount++;
 	LOG->INFO (LOG_CATEGORY_LIBGUI, "...Erfolgreich");
 	return true;
 }
 
-bool HBox::ChangeChild ( std::string ID )
+bool TopBar::ChangeChild ( std::string ID )
 {}
 
-void HBox::ChangeSize	( Rect rect )
+void TopBar::ChangeSize	( Rect rect )
 {
-	Rect tmp = _Rect;
 	_Rect = rect;
 	Rect rec = rect;
 	rect.SetW ( _Rect.GetW() / (_ChildCount +1) );
+	rect.SetH (_FixH);
+	_Rect.SetH (_FixH);
 	
 	int i = 0;
 	//neue größe für jedes Element setzen
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
+		std::cout << "chanegSize: " << element.first <<  " W: " << rect.GetW()<< " H: " << rect.GetH() << std::endl;
+		
 		element.second->ChangeSize (rec);
 		_ChildRect[element.first].SetW (rec.GetW());
 		i++;
 	 }
 }
 
-void HBox::ProcessEvent	( Event *event )
+void TopBar::ProcessEvent	( Event *event )
 {
 	event->data = _Parent;
-			std::cout << "auch hier " << _ID.c_str() << std::endl;
+			std::cout << "auch hier\n";
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
-		std::cout << "auch hier 2" << _ID.c_str() << std::endl;
+		std::cout <<"auch hier 2\n";
 		if ( _ChildRect[element.first].PointIsIn ( Point (event->X, event->Y)))
 		{
-			std::cout << "auch hier 3" << _ID.c_str() << std::endl;
+			std::cout <<"auch hier 3\n";
 			element.second->ProcessEvent (event);
 		}
 	}
 }
 	
-bool HBox::Draw	(void )
+bool TopBar::Draw	(void )
 {
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
+		//std::cout << "Draw " << element.first << std::endl;
 		element.second->Draw ();
 	}
 	return true;
 }
 
-void HBox::Update ( void )
+void TopBar::Update ( void )
 {}
 
-void HBox::ChangeOffset( Point offset )
+void TopBar::ChangeOffset( Point offset )
 {
 	_Offset = offset;
 	Point off;
@@ -129,13 +134,15 @@ void HBox::ChangeOffset( Point offset )
 		{
 			off.SetX ( _Offset.GetX() + ( _Rect.GetW()*i));
 		}
+		std::cout << "ChanegOffset: " <<element.first << " X: " << off.GetX()<< " Y: " << off.GetY() << std::endl;
+		
 		element.second->ChangeOffset (off);
 		_ChildRect[element.first].SetX (off.GetX());
 		i++;
 	 }
 }
 
-Point	HBox::GetOffset	( void )
+Point	TopBar::GetOffset	( void )
 {
 	return _Offset;
 }
