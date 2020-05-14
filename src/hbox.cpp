@@ -1,3 +1,21 @@
+/*
+ * hbox.cpp
+ * Copyright (C) 2020 Frank Kartheuser <frank.kurbatsch@gmail.com>
+ *
+ * libGUI is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * libGUI is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
 #include "../include/hbox.h"
 #include "../include/log.h"
 
@@ -58,6 +76,9 @@ bool HBox::AddChild	( Widget *child, std::string ID )
 		_ChildRect[element.first].SetX (off.GetX());
 		_ChildRect[element.first].SetW (rect.GetW());
 		_ChildRect[element.first].SetH (rect.GetH());
+		std::cout << _ID << " HBox::AddChild (" << element.first << std::endl;
+		std::cout << "\t" << off.GetX() << "x" << off.GetY() << "    " << rect.GetW() << "x" << rect.GetH() << std::endl;
+		
 		i++;
 	}
 	_ChildCount++;
@@ -88,13 +109,19 @@ void HBox::ChangeSize	( Rect rect )
 void HBox::ProcessEvent	( Event *event )
 {
 	event->data = _Parent;
-			std::cout << "auch hier " << _ID.c_str() << std::endl;
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
-		std::cout << "auch hier 2" << _ID.c_str() << std::endl;
-		if ( _ChildRect[element.first].PointIsIn ( Point (event->X, event->Y)))
+		std::cout << _ID.c_str() << "::ProcessEvent"<< std::endl;
+		std::cout << "\tevent->Point: " << event->X << "x"<< event->Y <<std::endl;
+		std::cout << "\t_ChildRect[" << element.first << "]->X: " << _ChildRect[element.first].GetX() << "    Y:" << _ChildRect[element.first].GetY() <<std::endl;
+		std::cout << "\t_ChildRect[" << element.first << "]->H: " << _ChildRect[element.first].GetH() << "    W:" << _ChildRect[element.first].GetW() <<std::endl;
+		Rect r = element.second->GetSize();
+		Point p = element.second->GetOffset();
+		r.SetX(p.GetX());
+		r.SetY(p.GetY());
+		if ( r.PointIsIn ( Point (event->X, event->Y)))
 		{
-			std::cout << "auch hier 3" << _ID.c_str() << std::endl;
+			std::cout << "\t\tIch bin drin" << _ID.c_str() << std::endl;
 			element.second->ProcessEvent (event);
 		}
 	}

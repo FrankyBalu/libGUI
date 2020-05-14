@@ -60,7 +60,7 @@ libGUI = shared_library(
   dependencies: [sdl_dep],
   install : true
 )
-
+subdir ('test')
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(libraries : libGUI,
                  version : '0.0.a', name : 'libGUI', filebase : 'libGUI', subdirs : 'libGUI' ,description : 

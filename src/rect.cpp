@@ -1,3 +1,21 @@
+/*
+ * rect.cpp
+ * Copyright (C) 2020 Frank Kartheuser <frank.kurbatsch@gmail.com>
+ *
+ * libGUI is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * libGUI is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
 #include "../include/rect.h"
 #include <SDL2/SDL.h>
 #include <iostream>
@@ -63,11 +81,19 @@ void Rect::SetSize ( int w, int h )
 	
 bool Rect::PointIsIn ( Point p )
 {
+	//std::cout << "\t\tPointIsIn Point: " << p.GetX() << "x" << p.GetY() <<std::endl;
+	//std::cout << "\t\t          Rect : " << _x << "x" << _y << "  " << _w << "x" << _h << std::endl;
 	if ( (p.GetX() > _x && p.GetX() < (_x + _w )) &&
 		 (p.GetY() > _y && p.GetY() < (_y + _h )))
+	{
+		//std::cout <<"\t\tstimmt\n";
 		 return true;
+	}
 	else
+	{
+		//std::cout <<"\t\tstimmt nicht\n";
 		return false;
+	}
 }
 
 bool Rect::HasIntersection ( Rect& r )

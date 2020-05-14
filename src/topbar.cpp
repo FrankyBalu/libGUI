@@ -1,3 +1,21 @@
+/*
+ * topbar.cpp
+ * Copyright (C) 2020 Frank Kartheuser <frank.kurbatsch@gmail.com>
+ *
+ * libGUI is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * libGUI is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
 #include "../include/topbar.h"
 #include "../include/log.h"
 
@@ -92,13 +110,10 @@ void TopBar::ChangeSize	( Rect rect )
 void TopBar::ProcessEvent	( Event *event )
 {
 	event->data = _Parent;
-			std::cout << "auch hier\n";
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
-		std::cout <<"auch hier 2\n";
 		if ( _ChildRect[element.first].PointIsIn ( Point (event->X, event->Y)))
 		{
-			std::cout <<"auch hier 3\n";
 			element.second->ProcessEvent (event);
 		}
 	}

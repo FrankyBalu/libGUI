@@ -27,8 +27,8 @@
 namespace LIBGUI {
 
 enum LOG_CATEGORY {
-           LOG_CATEGORY_LIBGUI = 30,
-           LOG_CATEGORY_APP,
+    LOG_CATEGORY_LIBGUI = 30,
+    LOG_CATEGORY_APP,
 };
 
 typedef enum
