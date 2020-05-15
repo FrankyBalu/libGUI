@@ -26,7 +26,6 @@ TopBar::TopBar ( Widget *parent, std::string ID, int height )
 	_ID = ID;
 	_Parent = parent;
 	_Renderer = _Parent->GetRenderer();
-	_ChildCount = 0;
 	_Rect.SetH ( height );
 	_FixH = height;
 	_Parent->AddChild( this, ID );
@@ -50,36 +49,30 @@ bool TopBar::AddChild	( Widget *child, std::string ID )
 		return false;
 	}
 	LOG->INFO (LOG_CATEGORY_LIBGUI, "Füge (%s) zu VBox (%s) hinzu", ID.c_str(), _ID.c_str());
-	Rect rect;
-	rect = _Rect;
+	Rect rect = _Rect;
 	Point off;
 	_Child[ID] = child;
+	_ChildOrder.push_back(ID);
 	//TODO _ChildCount kann sicher ersetzt werden map.size() oder sowas
-	rect.SetW ( _Rect.GetW() / (_ChildCount +1) );
+	rect.SetW ( _Rect.GetW() / _ChildOrder.size() );
 	off.SetY ( _Offset.GetY() );
-	int i = 0;
+
 	//neue größe für jedes Element setzen
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		if ( i == 0 )
+		if ( v == 0 )
 		{
 			off.SetX ( _Offset.GetX());				
 		}
 		else
 		{
-			off.SetX ( _Offset.GetX() + ( rect.GetW()*i));
+			off.SetX ( _Offset.GetX() + ( rect.GetW()*v));
 		}
-		LOG->DEBUG (LOG_CATEGORY_LIBGUI, "%s _Child:", element.first.c_str());
-		std::cout << element.first << " X: " << off.GetX()<< " Y: " << off.GetY()<< " W: " << rect.GetW()<< " H: " << rect.GetH() << std::endl;
-		element.second->ChangeSize (rect);
-		element.second->ChangeOffset (off);
-		_ChildRect[element.first].SetX (off.GetX());
-		_ChildRect[element.first].SetW (rect.GetW());
-		_ChildRect[element.first].SetH (rect.GetH());
-		i++;
+		//LOG->DEBUG (LOG_CATEGORY_LIBGUI, "%s _Child:", element.first.c_str());
 		
+		_Child[_ChildOrder[v]]->ChangeSize (rect);
+		_Child[_ChildOrder[v]]->ChangeOffset (off);
 	}
-	_ChildCount++;
 	LOG->INFO (LOG_CATEGORY_LIBGUI, "...Erfolgreich");
 	return true;
 }
@@ -90,41 +83,42 @@ bool TopBar::ChangeChild ( std::string ID )
 void TopBar::ChangeSize	( Rect rect )
 {
 	_Rect = rect;
-	Rect rec = rect;
-	rect.SetW ( _Rect.GetW() / (_ChildCount +1) );
-	rect.SetH (_FixH);
 	_Rect.SetH (_FixH);
-	
-	int i = 0;
-	//neue größe für jedes Element setzen
-	for (std::pair<std::string,Widget*> element : _Child)
+
+    if ( _ChildOrder.size() > 0 )
 	{
-		std::cout << "chanegSize: " << element.first <<  " W: " << rect.GetW()<< " H: " << rect.GetH() << std::endl;
-		
-		element.second->ChangeSize (rec);
-		_ChildRect[element.first].SetW (rec.GetW());
-		i++;
-	 }
+	    Rect tmp = _Rect;
+	    tmp.SetW ( _Rect.GetW() / _ChildOrder.size() );
+	    rect.SetH (_FixH);
+
+	    for (int v = 0; v < _ChildOrder.size(); v++)
+    	{
+    		_Child[_ChildOrder[v]]->ChangeSize (tmp);
+    	}
+    }
 }
 
 void TopBar::ProcessEvent	( Event *event )
 {
 	event->data = _Parent;
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		if ( _ChildRect[element.first].PointIsIn ( Point (event->X, event->Y)))
+		Rect r = _Child[_ChildOrder[v]]->GetSize();
+		Point p = _Child[_ChildOrder[v]]->GetOffset();
+		r.SetX(p.GetX());
+		r.SetY(p.GetY());
+		if ( r.PointIsIn ( Point (event->X, event->Y)))
 		{
-			element.second->ProcessEvent (event);
+			_Child[_ChildOrder[v]]->ProcessEvent (event);
 		}
 	}
 }
 	
 bool TopBar::Draw	(void )
 {
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		//std::cout << "Draw " << element.first << std::endl;
-		element.second->Draw ();
+		_Child[_ChildOrder[v]]->Draw ();
 	}
 	return true;
 }
@@ -135,26 +129,23 @@ void TopBar::Update ( void )
 void TopBar::ChangeOffset( Point offset )
 {
 	_Offset = offset;
-	Point off;
-	off.SetY ( _Offset.GetY() );
-	int i = 0;
-	//neue größe für jedes Element setzen
-	for (std::pair<std::string,Widget*> element : _Child)
+
+	if ( _ChildOrder.size() > 0 )
 	{
-		if ( i == 0 )
-		{
-			off.SetX ( _Offset.GetX());				
+		Point off = _Offset;
+	    for (int v = 0; v < _ChildOrder.size(); v++)
+	    {
+	        if ( v == 0 )
+		    {
+			    off.SetX ( _Offset.GetX());
+		    }
+		    else
+		    {
+			    off.SetX ( _Offset.GetX() + ( _Rect.GetW()*v));
+		    }
+		    _Child[_ChildOrder[v]]->ChangeOffset (off);
 		}
-		else
-		{
-			off.SetX ( _Offset.GetX() + ( _Rect.GetW()*i));
-		}
-		std::cout << "ChanegOffset: " <<element.first << " X: " << off.GetX()<< " Y: " << off.GetY() << std::endl;
-		
-		element.second->ChangeOffset (off);
-		_ChildRect[element.first].SetX (off.GetX());
-		i++;
-	 }
+	}
 }
 
 Point	TopBar::GetOffset	( void )

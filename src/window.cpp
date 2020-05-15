@@ -54,7 +54,7 @@ Window::Window ( std::string title, int x, int y, int w, int h, unsigned int fla
 		_IsOpen = true;	
 		_MainChild = nullptr;
 		_Topbar = new TopBar ( this, "WINDOWTOPBAR", 40 );	
-		_Rect.SetY ( 40 );
+//		_Rect.SetY ( 40 );
 		_Offset.SetY(40);
 		_Rect.SetH ( _Rect.GetH() - 40);
 		_Event.Type		= NOEVENT;
@@ -78,11 +78,6 @@ Window::~Window ( void )
 
 bool Window::IsOpen ( void )
 {
-	/*ProcessEvent ( nullptr );
-	std::cout << "JHBGDJHKJDVHKJFHKJFHKD\n";
-	Update();
-	std::cout << "132124235345\n";
-	Draw();*/
 	return _IsOpen;
 }
 
@@ -99,35 +94,41 @@ Rect Window::GetSize ( void )
 
 bool Window::AddChild ( Widget *child, std::string ID)
 {
-	if ( _Child.count (ID) > 0)
+    /*if ( _ChildOrder.size() > 0)
 	{
 		LOG->ERROR (LOG_CATEGORY_LIBGUI,"Ein Widget mit der ID: %s gibt es schon im Fenster: %s", ID.c_str(), _ID.c_str());
 		return false;
-	}
+	}*/
 	_Child[ID] = child;
-	
 	_Child[ID]->ChangeSize ( _Rect );
 	_Child[ID]->ChangeOffset ( _Offset );
+	std::cout << "Window::AddChild 107\n";
+	std::cout << "ChildOrder.size(): " << _ChildOrder.size() << std::endl;
 	if (_MainChild == nullptr && ID != "WINDOWTOPBAR" )
 	{
-	    _MainChild = child;
-	    _MainChildID = ID;
-	    LOG->INFO ("Setze MainWidget von %s auf %s", _ID.c_str(), ID.c_str());
+            _MainChild = child;
+	        _MainChildID = ID;
 	}
+    //if ( ID != "WINDOWTOPBAR" )
+    //{
+    _ChildOrder.push_back(ID);
+    //}
+	    LOG->INFO ("Setze MainWidget von %s auf %s", _ID.c_str(), ID.c_str());
+
 	LOG->INFO (LOG_CATEGORY_LIBGUI,"Widget (%s) zu Fenster (%s) hinzugefügt", ID.c_str(), _ID.c_str());
 	return true;
 }
 
 bool Window::ChangeChild ( std::string ID)
 {
-    if ( _Child.count (ID) <= 0)
+    if ( _ChildOrder.size() <= 0)
 	{
 		LOG->ERROR (LOG_CATEGORY_LIBGUI,"Widget (%s) gibt es nicht im Fenster: %s", ID.c_str(), _ID.c_str());
 		return false;
 	}
 	else
 	{
-		LOG->INFO (LOG_CATEGORY_LIBGUI,"Wechsel MainWIdget von %s zu %s", _ID.c_str(), ID.c_str());
+		LOG->INFO (LOG_CATEGORY_LIBGUI,"Wechsel MainWidget zu %s", ID.c_str());
 		_MainChild = _Child[ID];
 		_MainChildID = ID;
 		return true;
@@ -137,8 +138,11 @@ bool Window::ChangeChild ( std::string ID)
 
 void Window::ChangeSize ( Rect rect )
 {
-	//TODO blödsinn... die Compilerwarnung muss auch anders weg gehen, denk ich mal
-	rect.GetX();
+	_Rect = rect;
+	for (int v = 0; v < _ChildOrder.size(); v++)
+	{
+		_Child[_ChildOrder[v]]->ChangeSize (_Rect);
+	}
 }
 
 void Window::ProcessEvent ( Event *event )
@@ -150,13 +154,15 @@ void Window::ProcessEvent ( Event *event )
 	if ( _Event.Type == WINDOWRESIZE )
 	{
 		int tmpW, tmpH;
+		Rect rect;
 		lowVideo::Inst()->GetWindowSize ( _Window, &tmpW, &tmpH );
-		_Rect.SetSize ( tmpW, tmpH - 40);
+		rect.SetSize ( tmpW, tmpH - 40);
+		ChangeSize (rect);
 		
 		LOG->INFO (LOG_CATEGORY_LIBGUI,"Fenster größe von %s geändert: W = %d H = %d", _ID.c_str(), tmpW, tmpH);
-		for (std::pair<std::string,Widget*> element : _Child)
+		for (int v = 0; v < _ChildOrder.size(); v++)
 		{
-			element.second->ChangeSize (_Rect);
+			_Child[_ChildOrder[v]]->ChangeSize (_Rect);
 		}
 	}
 	else if ( _Event.Type != NOEVENT )
@@ -178,10 +184,13 @@ void Window::ProcessEvent ( Event *event )
 
 void Window::Update ( void )
 {
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		element.second->Update ();
+		_Child[_ChildOrder[v]]->Update ();
+		//std::cout << "Widget Adresse von " << _ChildOrder[v] << ": " << _Child[_ChildOrder[v]] << std::endl;
+		//std::cout << "Order size: "  << _ChildOrder.size() << std::endl;
 	}
+	
 }
 
 bool Window::Draw ( void )
@@ -193,6 +202,7 @@ bool Window::Draw ( void )
 	}
 	if ( _MainChild != nullptr )
 	{
+		//std::cout << "draw: " << _MainChildID << std::endl;
 		if ( !_MainChild->Draw() )
 		{
 			LOG->ERROR (LOG_CATEGORY_LIBGUI,"Fenster %s: Konnte %s nicht Rendern: %s", _ID.c_str(), _MainChildID.c_str());

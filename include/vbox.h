@@ -27,6 +27,7 @@
 #include "renderer.h"
 #include "event.h"
 #include <map>
+#include <vector>
 
 namespace LIBGUI {
 
@@ -34,7 +35,7 @@ namespace LIBGUI {
 class VBox : public Widget {
 protected:
 	std::map<std::string,Widget*>   _Child;
-	std::map<std::string,Rect>      _ChildRect;
+	std::vector<std::string>        _ChildOrder;
 	int     _ChildCount;
 	bool    _FixW;
 	bool    _FixH;

@@ -24,10 +24,11 @@ namespace LIBGUI {
 
 VBox::VBox ( Widget *parent, std::string ID )
 {
+
 	_ID = ID;
 	_Parent = parent;
 	_Renderer = _Parent->GetRenderer();
-	_ChildCount = 0;
+	//_ChildCount = 0;
 	_FixW = false;
 	_FixH = false;
 	_Parent->AddChild( this, ID );
@@ -55,34 +56,26 @@ bool VBox::AddChild ( Widget *child, std::string ID )
 	rect = _Rect;
 	Point off;
 	_Child[ID] = child;
+	_ChildOrder.push_back(ID);
+
 	//TODO _ChildCount kann sicher ersetzt werden map.size() oder sowas
-	rect.SetH ( _Rect.GetH() / (_ChildCount +1) );
+	rect.SetH ( _Rect.GetH() / _ChildOrder.size() );
 	off.SetX ( _Offset.GetX() );
-	int i = 0;
-	int h;
 	//neue größe für jedes Element setzen
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		if ( i == 0 )
+		if ( v == 0 )
 		{
 			off.SetY ( _Offset.GetY());				
 		}
 		else
 		{
-			off.SetY ( _Offset.GetY() + ( rect.GetH()*i));
+			off.SetY ( _Offset.GetY() + ( rect.GetH()*v));
 		}
-		LOG->DEBUG (LOG_CATEGORY_LIBGUI, "%s _Child:", element.first.c_str());
-		element.second->ChangeSize (rect);
-		element.second->ChangeOffset (off);
-		_ChildRect[element.first].SetY (off.GetY());
-		_ChildRect[element.first].SetW (rect.GetW());
-		_ChildRect[element.first].SetH (rect.GetH());
-		std::cout << _ID << " VBox::AddChild (" << element.first << std::endl;
-		std::cout << "\t" << off.GetX() << "x" << off.GetY() << "    " << rect.GetW() << "x" << rect.GetH() << std::endl;
-		
-		i++;
+		//LOG->DEBUG (LOG_CATEGORY_LIBGUI, "%s _Child:", element.first.c_str());
+		_Child[_ChildOrder[v]]->ChangeSize (rect);
+		_Child[_ChildOrder[v]]->ChangeOffset (off);
 	}
-	_ChildCount++;
 	LOG->INFO (LOG_CATEGORY_LIBGUI, "...Erfolgreich");
 	return true;
 }
@@ -93,47 +86,41 @@ bool VBox::ChangeChild ( std::string ID )
 
 void VBox::ChangeSize ( Rect rect )
 {
-	Rect tmp =_Rect;	
 	_Rect = rect;
-	Rect rec = rect;
-	rect.SetH ( _Rect.GetH() / (_ChildCount +1) );
 	
-	int i = 0;
-	//neue größe für jedes Element setzen
-	for (std::pair<std::string,Widget*> element : _Child)
+	if ( _ChildOrder.size() > 0)
 	{
-		element.second->ChangeSize (rec);
-		_ChildRect[element.first].SetH (rec.GetH());
-		i++;
-	 }
+	    Rect tmp =_Rect;
+	    tmp.SetH ( _Rect.GetH() / _ChildOrder.size() );
+
+    	for (int v = 0; v < _ChildOrder.size(); v++)
+    	{
+    		_Child[_ChildOrder[v]]->ChangeSize (tmp);
+    	}
+    }
 }
 
 void VBox::ProcessEvent ( Event *event )
 {
 	event->data = _Parent;
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		std::cout << _ID.c_str() << "::ProcessEvent"<< std::endl;
-		std::cout << "\tevent->Point: " << event->X << "x"<< event->Y <<std::endl;
-		std::cout << "\t_ChildRect[" << element.first << "]->X: " << _ChildRect[element.first].GetX() << "    Y:" << _ChildRect[element.first].GetY() <<std::endl;
-		std::cout << "\t_ChildRect[" << element.first << "]->H: " << _ChildRect[element.first].GetH() << "    W:" << _ChildRect[element.first].GetW() <<std::endl;
-		Rect r = element.second->GetSize();
-		Point p = element.second->GetOffset();
+		Rect r = _Child[_ChildOrder[v]]->GetSize();
+		Point p = _Child[_ChildOrder[v]]->GetOffset();
 		r.SetX(p.GetX());
 		r.SetY(p.GetY());
 		if ( r.PointIsIn ( Point (event->X, event->Y)))
 		{
-			std::cout << "\t\tIch bin drin" << _ID.c_str() << std::endl;
-			element.second->ProcessEvent (event);
+			_Child[_ChildOrder[v]]->ProcessEvent (event);
 		}
 	}
 }
 	
 bool VBox::Draw (void )
 {
-	for (std::pair<std::string,Widget*> element : _Child)
+	for (int v = 0; v < _ChildOrder.size(); v++)
 	{
-		element.second->Draw ();
+		_Child[_ChildOrder[v]]->Draw ();
 	}
 	return true;
 }
@@ -144,24 +131,23 @@ void VBox::Update ( void )
 void VBox::ChangeOffset ( Point offset )
 {
 	_Offset = offset;
-	Point off;
-	off.SetX ( _Offset.GetX() );
-	int i = 0;
-	//neue größe für jedes Element setzen
-	for (std::pair<std::string,Widget*> element : _Child)
+
+	if ( _ChildOrder.size() > 0 )
 	{
-		if ( i == 0 )
-		{
-			off.SetY ( _Offset.GetY());				
-		}
-		else
-		{
-			off.SetY ( _Offset.GetY() + ( _Rect.GetH()*i));
-		}
-		element.second->ChangeOffset (off);
-		_ChildRect[element.first].SetY (off.GetY());
-		i++;
-	 }
+	    Point off = _Offset;
+	    for (int v = 0; v < _ChildOrder.size(); v++)
+	    {
+		    if ( v == 0 )
+	    	{
+		    	off.SetY ( _Offset.GetY());
+	    	}
+		    else
+	    	{
+		    	off.SetY ( _Offset.GetY() + ( _Rect.GetH()*v));
+	    	}
+		    _Child[_ChildOrder[v]]->ChangeOffset (off);
+	    }
+	}
 }
 
 Point	VBox::GetOffset	( void )

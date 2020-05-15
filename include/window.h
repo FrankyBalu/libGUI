@@ -25,6 +25,7 @@
 #include "widget.h"
 #include "topbar.h"
 #include <map>
+#include <vector>
 
 
 namespace LIBGUI {
@@ -34,12 +35,13 @@ class Window : public Widget
 {
 private:
     RawWindow *_Window;
-    std::map <std::string,Widget*> _Child;
-    Widget *_MainChild;
-    TopBar *_Topbar;
-    std::string _MainChildID;
-    bool _IsOpen;
-    Event 		_Event;
+    std::map <std::string,Widget*>  _Child;
+    std::vector <std::string>       _ChildOrder;
+    Widget                          *_MainChild;
+    TopBar                          *_Topbar;
+    std::string                     _MainChildID;
+    bool                            _IsOpen;
+    Event 		                    _Event;
 
     
 public:
