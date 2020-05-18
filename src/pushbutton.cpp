@@ -150,7 +150,7 @@ bool	PushButton::Draw	(void )
 		Texture::Inst()->Draw ( _PressedTexture, &_Rect, &_DrawDestRect );	
 		Texture::Inst()->Draw ( _PressedLabel->ID, &_UnPressedLabel->Size, &_LabelRect );
 	}
-	else if ( !_IsPressed || !_IsActive )
+	else //if ( !_IsPressed || !_IsActive )
 	{
 		Texture::Inst()->Draw ( _UnPressedTexture, &_Rect, &_DrawDestRect );	
 		Texture::Inst()->Draw ( _UnPressedLabel->ID, &_UnPressedLabel->Size, &_LabelRect );

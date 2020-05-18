@@ -21,6 +21,7 @@
 #include "../include/log.h"
 #include <SDL_ttf.h>
 #include <memory>
+#include <chrono>
 
 namespace LIBGUI {
 
@@ -59,7 +60,7 @@ lowRenderText* basicRenderText::Render ( std::string text, uint8_t r, uint8_t g,
 		return nullptr;
 	}
 		
-	std::string ID = text + "_basicRenderText";
+	std::string ID = text + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count());
 	if (!Texture::Inst()->Load ( sur, ID ))
 	{
 		LOG->ERROR (LOG_CATEGORY_LIBGUI, "Konnte Text(%s) nicht erstellen: %s", text.c_str(), SDL_GetError());
