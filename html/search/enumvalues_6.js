@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['window_5fallow_5fhighdpi',['WINDOW_ALLOW_HIGHDPI',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9aa39f9ebe4311356f79c1c8bfb8b916ed',1,'LIBGUI']]],
+  ['window_5falways_5fon_5ftop',['WINDOW_ALWAYS_ON_TOP',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9af5c384bc951337d8608385ed90aeade7',1,'LIBGUI']]],
+  ['window_5fborderless',['WINDOW_BORDERLESS',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a494aed103cd28323995095776cb9754c',1,'LIBGUI']]],
+  ['window_5fforeign',['WINDOW_FOREIGN',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9af9f1127bc0a15032b46e2ed2eaed5cbc',1,'LIBGUI']]],
+  ['window_5ffullscreen',['WINDOW_FULLSCREEN',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a6d3e8d40a8462b9c5faa9ff278655e96',1,'LIBGUI']]],
+  ['window_5ffullscreen_5fdesktop',['WINDOW_FULLSCREEN_DESKTOP',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9ad158d08531a52013e8bfd37e006fcc95',1,'LIBGUI']]],
+  ['window_5fhidden',['WINDOW_HIDDEN',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9ac090429df663de40878afd7ce4937ade',1,'LIBGUI']]],
+  ['window_5finput_5ffocus',['WINDOW_INPUT_FOCUS',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a2cefbdc1945c387c09d2774d68503be4',1,'LIBGUI']]],
+  ['window_5finput_5fgrabbed',['WINDOW_INPUT_GRABBED',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9af7426a6a1eb607aa23411a5f7c8540c0',1,'LIBGUI']]],
+  ['window_5fmaximized',['WINDOW_MAXIMIZED',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a879753b47092c0952f3adfea0f7f3174',1,'LIBGUI']]],
+  ['window_5fminimized',['WINDOW_MINIMIZED',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a8e3eb9e781b5ab7e3d79b65bc577902f',1,'LIBGUI']]],
+  ['window_5fmouse_5fcapture',['WINDOW_MOUSE_CAPTURE',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a6336d820cafe886e811b32131a771cd6',1,'LIBGUI']]],
+  ['window_5fmouse_5ffocus',['WINDOW_MOUSE_FOCUS',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9af5090959542efd0610a0d418aaf8fa68',1,'LIBGUI']]],
+  ['window_5fopengl',['WINDOW_OPENGL',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9aea2e00a0c3aa366b0f5fdbfe952f6ee7',1,'LIBGUI']]],
+  ['window_5fpopup_5fmenu',['WINDOW_POPUP_MENU',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9aa2afe37febcf9824180ff2bcb2dc0bbb',1,'LIBGUI']]],
+  ['window_5fresizable',['WINDOW_RESIZABLE',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a7e30b137d43e982cc97325c6f1aab173',1,'LIBGUI']]],
+  ['window_5fshown',['WINDOW_SHOWN',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9aeb188811e40e2697c6ed3fc0b1a775a4',1,'LIBGUI']]],
+  ['window_5fskip_5ftaskbar',['WINDOW_SKIP_TASKBAR',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a03b4d0dab2f266f4f1a254071cec9166',1,'LIBGUI']]],
+  ['window_5ftooltip',['WINDOW_TOOLTIP',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a7e9be6ea921a5278b3b028ff71868730',1,'LIBGUI']]],
+  ['window_5futility',['WINDOW_UTILITY',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9a02283d539413ddace5ef4b0d91f10abf',1,'LIBGUI']]],
+  ['window_5fvulkan',['WINDOW_VULKAN',['../namespace_l_i_b_g_u_i.html#a09ad6c51d0ae8c4f6d11e91532fecbf9afa30ba853e3a54e63ba91c06b33a5fa2',1,'LIBGUI']]],
+  ['windowresize',['WINDOWRESIZE',['../namespace_l_i_b_g_u_i.html#a525d535a7054bd04161940b431822806a535e5546912126bd775add32c90bc31c',1,'LIBGUI']]]
+];

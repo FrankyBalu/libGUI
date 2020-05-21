@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>libGUI: include/log.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">libGUI
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">Simple, SDL2 based touch GUI</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="namespaces.html"><span>Namensbereiche</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('log_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">log.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="log_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * log.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Copyright (C) 2020 Frank Kartheuser &lt;frank.kurbatsch@gmail.com&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * libGUI is free software: you can redistribute it and/or modify it</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * under the terms of the GNU General Public License as published by the</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Free Software Foundation, either version 3 of the License, or</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * (at your option) any later version.</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * libGUI is distributed in the hope that it will be useful, but</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * WITHOUT ANY WARRANTY; without even the implied warranty of</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * See the GNU General Public License for more details.</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License along</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef __LIBGUI_LOG__</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define __LIBGUI_LOG__</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="log_8h.html#a159ca84d25a5487d8e81e4438725df19">   25</a></span>&#160;<span class="preprocessor">#define LOG LIBGUI::Log::LogInst()</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_l_i_b_g_u_i.html">LIBGUI</a> {</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645">   29</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645">LOG_CATEGORY</a> {</div><div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645a2b3f5440f333d45224f844b4dcc963fb">   30</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645a2b3f5440f333d45224f844b4dcc963fb">LOG_CATEGORY_LIBGUI</a> = 30,</div><div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645aab9c8777f428aa1fbef23d85389a5c7b">   31</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645aab9c8777f428aa1fbef23d85389a5c7b">LOG_CATEGORY_APP</a>,</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80">   34</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div><div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80ac30bcc1c4b4731423bae9b6b2429148f">   36</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80ac30bcc1c4b4731423bae9b6b2429148f">LOG_PRIORITY_VERBOSE</a> = 1,</div><div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80ab33485c8b6c810dbc22e9204b6447f9b">   37</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80ab33485c8b6c810dbc22e9204b6447f9b">LOG_PRIORITY_DEBUG</a>,</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a5c9d066450022349f0ceee4438d1882d">   38</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a5c9d066450022349f0ceee4438d1882d">LOG_PRIORITY_INFO</a>,</div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80abe378c243fc5df5a0b47260f27b79bec">   39</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80abe378c243fc5df5a0b47260f27b79bec">LOG_PRIORITY_WARN</a>,</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80abb238ed70d7ee564c135b337a8f1edc2">   40</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80abb238ed70d7ee564c135b337a8f1edc2">LOG_PRIORITY_ERROR</a>,</div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a310af14604782292a566cde7cb59db73">   41</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a310af14604782292a566cde7cb59db73">LOG_PRIORITY_CRITICAL</a>,</div><div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a85cf5bbf67bb1cf7ca49bc623899f7f7">   42</a></span>&#160;    <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a85cf5bbf67bb1cf7ca49bc623899f7f7">NUM_LOG_PRIORITIES</a></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;} <a class="code" href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80">LogPriority</a>;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">   45</a></span>&#160;<span class="preprocessor">#define PRINTF_FORMAT_STRING</span></div><div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">   46</a></span>&#160;<span class="preprocessor">#define PRINTF_VARARG_FUNC( fmtargnumber ) __attribute__ (( format( __printf__, fmtargnumber, fmtargnumber+1 )))</span></div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_log.html">   49</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_l_i_b_g_u_i_1_1_log.html">Log</a></div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">private</span>:</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html">Log</a> *instance;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_l_i_b_g_u_i_1_1_log.html">Log</a>();</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        LogPriority _priority;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">int</span> _category;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">public</span>:</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html">Log</a> *<a class="code" href="class_l_i_b_g_u_i_1_1_log.html#a8b27b6bfef32638fbb3b98d147fe262d">LogInst</a>();</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        </div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#a9c035654cce0f75b1dc1f5339bff5aba">setPriority</a> ( LogPriority pri );</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#ab5c2b4efaf31064174ef2a767e1ae1a4">setCategory</a> ( <span class="keywordtype">int</span> category );</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        </div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#ac8c485c26de1f99c4e8315e9f63a827b">VERBOSE</a> ( <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(2); </div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#aa3a65f1511503b60b616e352f967c399">INFO</a> ( <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(2);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#a9c0c95b3849858175b1e3aec913c54b2">DEBUG</a> ( <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(2);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#a271da57b3a4b5191a4088dada3c251a0">WARN</a> ( <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(2);</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#ada98d740912722c80e3099e599108c8b">ERROR</a> ( <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(2);</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        </div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#ac8c485c26de1f99c4e8315e9f63a827b">VERBOSE</a> (<span class="keywordtype">int</span> cat, <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(3); </div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#aa3a65f1511503b60b616e352f967c399">INFO</a> (<span class="keywordtype">int</span> cat, <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(3);</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#a9c0c95b3849858175b1e3aec913c54b2">DEBUG</a> (<span class="keywordtype">int</span> cat, <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(3);</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#a271da57b3a4b5191a4088dada3c251a0">WARN</a> (<span class="keywordtype">int</span> cat,  <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(3);</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_l_i_b_g_u_i_1_1_log.html#ada98d740912722c80e3099e599108c8b">ERROR</a> (<span class="keywordtype">int</span> cat, <a class="code" href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a> <span class="keyword">const</span> <span class="keywordtype">char</span> *msg, ... )<a class="code" href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a>(3);</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}<span class="comment">//namespace LIBGUI</span></div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif //__LIBGUI_LOG__</span></div><div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_a8b27b6bfef32638fbb3b98d147fe262d"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#a8b27b6bfef32638fbb3b98d147fe262d">LIBGUI::Log::LogInst</a></div><div class="ttdeci">static Log * LogInst()</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_a271da57b3a4b5191a4088dada3c251a0"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#a271da57b3a4b5191a4088dada3c251a0">LIBGUI::Log::WARN</a></div><div class="ttdeci">void WARN(PRINTF_FORMAT_STRING const char *msg,...) PRINTF_VARARG_FUNC(2)</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80a310af14604782292a566cde7cb59db73"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a310af14604782292a566cde7cb59db73">LIBGUI::LOG_PRIORITY_CRITICAL</a></div><div class="ttdef"><b>Definition:</b> log.h:41</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_a9c0c95b3849858175b1e3aec913c54b2"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#a9c0c95b3849858175b1e3aec913c54b2">LIBGUI::Log::DEBUG</a></div><div class="ttdeci">void DEBUG(PRINTF_FORMAT_STRING const char *msg,...) PRINTF_VARARG_FUNC(2)</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80abb238ed70d7ee564c135b337a8f1edc2"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80abb238ed70d7ee564c135b337a8f1edc2">LIBGUI::LOG_PRIORITY_ERROR</a></div><div class="ttdef"><b>Definition:</b> log.h:40</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80">LIBGUI::LogPriority</a></div><div class="ttdeci">LogPriority</div><div class="ttdef"><b>Definition:</b> log.h:34</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80ab33485c8b6c810dbc22e9204b6447f9b"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80ab33485c8b6c810dbc22e9204b6447f9b">LIBGUI::LOG_PRIORITY_DEBUG</a></div><div class="ttdef"><b>Definition:</b> log.h:37</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_af759d051c35ad70b69122e1ecd79c645a2b3f5440f333d45224f844b4dcc963fb"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645a2b3f5440f333d45224f844b4dcc963fb">LIBGUI::LOG_CATEGORY_LIBGUI</a></div><div class="ttdef"><b>Definition:</b> log.h:30</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_ac8c485c26de1f99c4e8315e9f63a827b"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#ac8c485c26de1f99c4e8315e9f63a827b">LIBGUI::Log::VERBOSE</a></div><div class="ttdeci">void VERBOSE(PRINTF_FORMAT_STRING const char *msg,...) PRINTF_VARARG_FUNC(2)</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_af759d051c35ad70b69122e1ecd79c645aab9c8777f428aa1fbef23d85389a5c7b"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645aab9c8777f428aa1fbef23d85389a5c7b">LIBGUI::LOG_CATEGORY_APP</a></div><div class="ttdef"><b>Definition:</b> log.h:31</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80abe378c243fc5df5a0b47260f27b79bec"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80abe378c243fc5df5a0b47260f27b79bec">LIBGUI::LOG_PRIORITY_WARN</a></div><div class="ttdef"><b>Definition:</b> log.h:39</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_af759d051c35ad70b69122e1ecd79c645"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#af759d051c35ad70b69122e1ecd79c645">LIBGUI::LOG_CATEGORY</a></div><div class="ttdeci">LOG_CATEGORY</div><div class="ttdef"><b>Definition:</b> log.h:29</div></div>
+<div class="ttc" id="log_8h_html_a3bdad6af5a31d909fd55f05387212091"><div class="ttname"><a href="log_8h.html#a3bdad6af5a31d909fd55f05387212091">PRINTF_VARARG_FUNC</a></div><div class="ttdeci">#define PRINTF_VARARG_FUNC(fmtargnumber)</div><div class="ttdef"><b>Definition:</b> log.h:46</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_a9c035654cce0f75b1dc1f5339bff5aba"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#a9c035654cce0f75b1dc1f5339bff5aba">LIBGUI::Log::setPriority</a></div><div class="ttdeci">void setPriority(LogPriority pri)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_ab5c2b4efaf31064174ef2a767e1ae1a4"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#ab5c2b4efaf31064174ef2a767e1ae1a4">LIBGUI::Log::setCategory</a></div><div class="ttdeci">void setCategory(int category)</div></div>
+<div class="ttc" id="log_8h_html_aed4dee18e5cb9d0a58ac2a2a8e03f80d"><div class="ttname"><a href="log_8h.html#aed4dee18e5cb9d0a58ac2a2a8e03f80d">PRINTF_FORMAT_STRING</a></div><div class="ttdeci">#define PRINTF_FORMAT_STRING</div><div class="ttdef"><b>Definition:</b> log.h:45</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80ac30bcc1c4b4731423bae9b6b2429148f"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80ac30bcc1c4b4731423bae9b6b2429148f">LIBGUI::LOG_PRIORITY_VERBOSE</a></div><div class="ttdef"><b>Definition:</b> log.h:36</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html">LIBGUI</a></div><div class="ttdef"><b>Definition:</b> basicrendertext.h:25</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html">LIBGUI::Log</a></div><div class="ttdef"><b>Definition:</b> log.h:49</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_aa3a65f1511503b60b616e352f967c399"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#aa3a65f1511503b60b616e352f967c399">LIBGUI::Log::INFO</a></div><div class="ttdeci">void INFO(PRINTF_FORMAT_STRING const char *msg,...) PRINTF_VARARG_FUNC(2)</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80a5c9d066450022349f0ceee4438d1882d"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a5c9d066450022349f0ceee4438d1882d">LIBGUI::LOG_PRIORITY_INFO</a></div><div class="ttdef"><b>Definition:</b> log.h:38</div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html_a8bd5830b66517c658910133d9bd76c80a85cf5bbf67bb1cf7ca49bc623899f7f7"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html#a8bd5830b66517c658910133d9bd76c80a85cf5bbf67bb1cf7ca49bc623899f7f7">LIBGUI::NUM_LOG_PRIORITIES</a></div><div class="ttdef"><b>Definition:</b> log.h:42</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_log_html_ada98d740912722c80e3099e599108c8b"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_log.html#ada98d740912722c80e3099e599108c8b">LIBGUI::Log::ERROR</a></div><div class="ttdeci">void ERROR(PRINTF_FORMAT_STRING const char *msg,...) PRINTF_VARARG_FUNC(2)</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="log_8h.html">log.h</a></li>
+    <li class="footer">Erzeugt von
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>

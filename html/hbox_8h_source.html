@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>libGUI: include/hbox.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">libGUI
+   &#160;<span id="projectnumber">0.0.0</span>
+   </div>
+   <div id="projectbrief">Simple, SDL2 based touch GUI</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="namespaces.html"><span>Namensbereiche</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('hbox_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">hbox.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="hbox_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * hbox.h</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * Copyright (C) 2020 Frank Kartheuser &lt;frank.kurbatsch@gmail.com&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * libGUI is free software: you can redistribute it and/or modify it</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * under the terms of the GNU General Public License as published by the</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Free Software Foundation, either version 3 of the License, or</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * (at your option) any later version.</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * libGUI is distributed in the hope that it will be useful, but</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * WITHOUT ANY WARRANTY; without even the implied warranty of</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * See the GNU General Public License for more details.</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * </span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License along</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef __LIBGUI_HBOX__</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define __LIBGUI_HBOX__</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="widget_8h.html">widget.h</a>&quot;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rect_8h.html">rect.h</a>&quot;</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="video_8h.html">video.h</a>&quot;</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="renderer_8h.html">renderer.h</a>&quot;</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="event_8h.html">event.h</a>&quot;</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_l_i_b_g_u_i.html">LIBGUI</a> {</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html">HBox</a> : <span class="keyword">public</span> <a class="code" href="class_l_i_b_g_u_i_1_1_widget.html">Widget</a> {</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a234d4e8ff2208ad2f236bd5335e3cd5a">   37</a></span>&#160;    std::map&lt;std::string,Widget*&gt;   <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a234d4e8ff2208ad2f236bd5335e3cd5a">_Child</a>;</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a7fda80814fa48ab154a4729a3fa1f690">   38</a></span>&#160;    std::map&lt;std::string,Rect&gt;      <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a7fda80814fa48ab154a4729a3fa1f690">_ChildRect</a>;</div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a0878a6df14d503116ef5f7de3edc0ae5">   39</a></span>&#160;    <span class="keywordtype">int</span>     <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a0878a6df14d503116ef5f7de3edc0ae5">_ChildCount</a>;</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a5ce42b4aa885c7d901a3c88d109bc300">   40</a></span>&#160;    <span class="keywordtype">bool</span>    <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a5ce42b4aa885c7d901a3c88d109bc300">_FixW</a>;</div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a7248e82f08d8122c0b737b86c61cca36">   41</a></span>&#160;    <span class="keywordtype">bool</span>    <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a7248e82f08d8122c0b737b86c61cca36">_FixH</a>;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:     </div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a419a32b382db3c25544b06b6518c2f3f">HBox</a> ( <a class="code" href="class_l_i_b_g_u_i_1_1_widget.html">Widget</a> *parent, std::string ID );</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_l_i_b_g_u_i_1_1_renderer.html">Renderer</a>*   <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a1d3edb48ba685af3ad473295854a76fd">GetRenderer</a>     ( <span class="keywordtype">void</span> );</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_l_i_b_g_u_i_1_1_rect.html">Rect</a>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#ab4f3c6544eb6543ae247fc1f77d30689">GetSize</a>         ( <span class="keywordtype">void</span> );</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a0000ac08b0f8762fe7ee53e95e9527ff">AddChild</a>        ( <a class="code" href="class_l_i_b_g_u_i_1_1_widget.html">Widget</a> *child, std::string ID );</div><div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a494f651659db947b6a63602f7fbaf027">   49</a></span>&#160;    <span class="keywordtype">bool</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a494f651659db947b6a63602f7fbaf027">AddChild</a>        ( <a class="code" href="class_l_i_b_g_u_i_1_1_widget.html">Widget</a> *child, std::string ID, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> h ){}</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">bool</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a878ecfbe07cae356fa69a3e927721301">ChangeChild</a>     ( std::string ID );</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a2e1a74bd9040cdd67b26ce34c31e711d">ChangeSize</a>      ( <a class="code" href="class_l_i_b_g_u_i_1_1_rect.html">Rect</a> rect );</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a4c2879f69c798ed3b5e9ed84a8723fca">ProcessEvent</a>    ( <a class="code" href="struct_l_i_b_g_u_i_1_1_event.html">Event</a> *event );</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a446ed900c0cb5804c2ca61155e90dc42">Draw</a>            (<span class="keywordtype">void</span> );</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a28a5f71666373336277595b5f52e7987">Update</a>          ( <span class="keywordtype">void</span> );</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#aefb6bce589488174541edbfc85365756">ChangeOffset</a>    ( <a class="code" href="class_l_i_b_g_u_i_1_1_point.html">Point</a> offset );</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_l_i_b_g_u_i_1_1_point.html">Point</a>       <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a47308e87adbe3386d1af844fa43d1a43">GetOffset</a>       ( <span class="keywordtype">void</span> );</div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#aeb931335a13a28b2d53d733f07c5a4a8">   57</a></span>&#160;    <span class="keywordtype">bool</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#aeb931335a13a28b2d53d733f07c5a4a8">IsFixedH</a>        ( <span class="keywordtype">void</span> ){<span class="keywordflow">return</span> <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a7248e82f08d8122c0b737b86c61cca36">_FixH</a>;}</div><div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a6d6abc54cb11f80fbd8900ed5e454c4d">   58</a></span>&#160;    <span class="keywordtype">bool</span>        <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a6d6abc54cb11f80fbd8900ed5e454c4d">IsFixedW</a>        ( <span class="keywordtype">void</span> ){<span class="keywordflow">return</span> <a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a5ce42b4aa885c7d901a3c88d109bc300">_FixW</a>;}</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    </div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#ae3cb4f67372482430ba217581ba65cc4">   61</a></span>&#160;    void ( *<a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#ae3cb4f67372482430ba217581ba65cc4">onClick</a> )   ( <span class="keywordtype">void</span> *data );</div><div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#aa752f3fd8fa293c73d5ef422c1f9cac1">   62</a></span>&#160;    void ( *<a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#aa752f3fd8fa293c73d5ef422c1f9cac1">onPress</a> )   ( <span class="keywordtype">void</span> *data );</div><div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#ab2fd433e68378f2af8fdb5b395297175">   63</a></span>&#160;    void ( *<a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#ab2fd433e68378f2af8fdb5b395297175">onSlideH</a> )  ( <span class="keywordtype">void</span> *data );</div><div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a131e473f98fe079eb984c6cbc88a476b">   64</a></span>&#160;    void ( *<a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a131e473f98fe079eb984c6cbc88a476b">onSlideV</a> )  ( <span class="keywordtype">void</span> *data );</div><div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_l_i_b_g_u_i_1_1_h_box.html#a8f18a73355ed7af60ce30629deaa9e8c">   65</a></span>&#160;    void ( *<a class="code" href="class_l_i_b_g_u_i_1_1_h_box.html#a8f18a73355ed7af60ce30629deaa9e8c">onRelease</a> ) ( <span class="keywordtype">void</span> *data );</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    </div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}<span class="comment">//namespace LIBGUI</span></div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif //__LIBGUI_VBOX__</span></div><div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a4c2879f69c798ed3b5e9ed84a8723fca"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a4c2879f69c798ed3b5e9ed84a8723fca">LIBGUI::HBox::ProcessEvent</a></div><div class="ttdeci">void ProcessEvent(Event *event)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a419a32b382db3c25544b06b6518c2f3f"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a419a32b382db3c25544b06b6518c2f3f">LIBGUI::HBox::HBox</a></div><div class="ttdeci">HBox(Widget *parent, std::string ID)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_ae3cb4f67372482430ba217581ba65cc4"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#ae3cb4f67372482430ba217581ba65cc4">LIBGUI::HBox::onClick</a></div><div class="ttdeci">void(* onClick)(void *data)</div><div class="ttdef"><b>Definition:</b> hbox.h:61</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a7fda80814fa48ab154a4729a3fa1f690"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a7fda80814fa48ab154a4729a3fa1f690">LIBGUI::HBox::_ChildRect</a></div><div class="ttdeci">std::map&lt; std::string, Rect &gt; _ChildRect</div><div class="ttdef"><b>Definition:</b> hbox.h:38</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html">LIBGUI::HBox</a></div><div class="ttdef"><b>Definition:</b> hbox.h:35</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a0878a6df14d503116ef5f7de3edc0ae5"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a0878a6df14d503116ef5f7de3edc0ae5">LIBGUI::HBox::_ChildCount</a></div><div class="ttdeci">int _ChildCount</div><div class="ttdef"><b>Definition:</b> hbox.h:39</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a494f651659db947b6a63602f7fbaf027"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a494f651659db947b6a63602f7fbaf027">LIBGUI::HBox::AddChild</a></div><div class="ttdeci">bool AddChild(Widget *child, std::string ID, int width, int h)</div><div class="ttdef"><b>Definition:</b> hbox.h:49</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a234d4e8ff2208ad2f236bd5335e3cd5a"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a234d4e8ff2208ad2f236bd5335e3cd5a">LIBGUI::HBox::_Child</a></div><div class="ttdeci">std::map&lt; std::string, Widget * &gt; _Child</div><div class="ttdef"><b>Definition:</b> hbox.h:37</div></div>
+<div class="ttc" id="video_8h_html"><div class="ttname"><a href="video_8h.html">video.h</a></div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a131e473f98fe079eb984c6cbc88a476b"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a131e473f98fe079eb984c6cbc88a476b">LIBGUI::HBox::onSlideV</a></div><div class="ttdeci">void(* onSlideV)(void *data)</div><div class="ttdef"><b>Definition:</b> hbox.h:64</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_ab2fd433e68378f2af8fdb5b395297175"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#ab2fd433e68378f2af8fdb5b395297175">LIBGUI::HBox::onSlideH</a></div><div class="ttdeci">void(* onSlideH)(void *data)</div><div class="ttdef"><b>Definition:</b> hbox.h:63</div></div>
+<div class="ttc" id="rect_8h_html"><div class="ttname"><a href="rect_8h.html">rect.h</a></div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_widget_html"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_widget.html">LIBGUI::Widget</a></div><div class="ttdef"><b>Definition:</b> widget.h:32</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_ab4f3c6544eb6543ae247fc1f77d30689"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#ab4f3c6544eb6543ae247fc1f77d30689">LIBGUI::HBox::GetSize</a></div><div class="ttdeci">Rect GetSize(void)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_point_html"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_point.html">LIBGUI::Point</a></div><div class="ttdef"><b>Definition:</b> point.h:27</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a2e1a74bd9040cdd67b26ce34c31e711d"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a2e1a74bd9040cdd67b26ce34c31e711d">LIBGUI::HBox::ChangeSize</a></div><div class="ttdeci">void ChangeSize(Rect rect)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a47308e87adbe3386d1af844fa43d1a43"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a47308e87adbe3386d1af844fa43d1a43">LIBGUI::HBox::GetOffset</a></div><div class="ttdeci">Point GetOffset(void)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a6d6abc54cb11f80fbd8900ed5e454c4d"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a6d6abc54cb11f80fbd8900ed5e454c4d">LIBGUI::HBox::IsFixedW</a></div><div class="ttdeci">bool IsFixedW(void)</div><div class="ttdef"><b>Definition:</b> hbox.h:58</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a5ce42b4aa885c7d901a3c88d109bc300"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a5ce42b4aa885c7d901a3c88d109bc300">LIBGUI::HBox::_FixW</a></div><div class="ttdeci">bool _FixW</div><div class="ttdef"><b>Definition:</b> hbox.h:40</div></div>
+<div class="ttc" id="struct_l_i_b_g_u_i_1_1_event_html"><div class="ttname"><a href="struct_l_i_b_g_u_i_1_1_event.html">LIBGUI::Event</a></div><div class="ttdef"><b>Definition:</b> event.h:41</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_rect_html"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_rect.html">LIBGUI::Rect</a></div><div class="ttdef"><b>Definition:</b> rect.h:28</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a1d3edb48ba685af3ad473295854a76fd"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a1d3edb48ba685af3ad473295854a76fd">LIBGUI::HBox::GetRenderer</a></div><div class="ttdeci">Renderer * GetRenderer(void)</div></div>
+<div class="ttc" id="widget_8h_html"><div class="ttname"><a href="widget_8h.html">widget.h</a></div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a446ed900c0cb5804c2ca61155e90dc42"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a446ed900c0cb5804c2ca61155e90dc42">LIBGUI::HBox::Draw</a></div><div class="ttdeci">bool Draw(void)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a28a5f71666373336277595b5f52e7987"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a28a5f71666373336277595b5f52e7987">LIBGUI::HBox::Update</a></div><div class="ttdeci">void Update(void)</div></div>
+<div class="ttc" id="event_8h_html"><div class="ttname"><a href="event_8h.html">event.h</a></div></div>
+<div class="ttc" id="namespace_l_i_b_g_u_i_html"><div class="ttname"><a href="namespace_l_i_b_g_u_i.html">LIBGUI</a></div><div class="ttdef"><b>Definition:</b> basicrendertext.h:25</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a0000ac08b0f8762fe7ee53e95e9527ff"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a0000ac08b0f8762fe7ee53e95e9527ff">LIBGUI::HBox::AddChild</a></div><div class="ttdeci">bool AddChild(Widget *child, std::string ID)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_renderer_html"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_renderer.html">LIBGUI::Renderer</a></div><div class="ttdef"><b>Definition:</b> renderer.h:79</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_aeb931335a13a28b2d53d733f07c5a4a8"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#aeb931335a13a28b2d53d733f07c5a4a8">LIBGUI::HBox::IsFixedH</a></div><div class="ttdeci">bool IsFixedH(void)</div><div class="ttdef"><b>Definition:</b> hbox.h:57</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a878ecfbe07cae356fa69a3e927721301"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a878ecfbe07cae356fa69a3e927721301">LIBGUI::HBox::ChangeChild</a></div><div class="ttdeci">bool ChangeChild(std::string ID)</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_aa752f3fd8fa293c73d5ef422c1f9cac1"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#aa752f3fd8fa293c73d5ef422c1f9cac1">LIBGUI::HBox::onPress</a></div><div class="ttdeci">void(* onPress)(void *data)</div><div class="ttdef"><b>Definition:</b> hbox.h:62</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a8f18a73355ed7af60ce30629deaa9e8c"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a8f18a73355ed7af60ce30629deaa9e8c">LIBGUI::HBox::onRelease</a></div><div class="ttdeci">void(* onRelease)(void *data)</div><div class="ttdef"><b>Definition:</b> hbox.h:65</div></div>
+<div class="ttc" id="renderer_8h_html"><div class="ttname"><a href="renderer_8h.html">renderer.h</a></div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_a7248e82f08d8122c0b737b86c61cca36"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#a7248e82f08d8122c0b737b86c61cca36">LIBGUI::HBox::_FixH</a></div><div class="ttdeci">bool _FixH</div><div class="ttdef"><b>Definition:</b> hbox.h:41</div></div>
+<div class="ttc" id="class_l_i_b_g_u_i_1_1_h_box_html_aefb6bce589488174541edbfc85365756"><div class="ttname"><a href="class_l_i_b_g_u_i_1_1_h_box.html#aefb6bce589488174541edbfc85365756">LIBGUI::HBox::ChangeOffset</a></div><div class="ttdeci">void ChangeOffset(Point offset)</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="hbox_8h.html">hbox.h</a></li>
+    <li class="footer">Erzeugt von
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>
