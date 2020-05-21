@@ -61,8 +61,50 @@ PushButton::PushButton ( Widget *parent, std::string ID )
 		onDeactivate = nullptr;	
 		_IsCheckable = false;
 		_IsActive = false;
+		isFixedSize = false;
 }
 
+
+PushButton::PushButton ( Widget *parent, std::string ID, int width, int height )
+{
+		_ID = ID;		
+		_Renderer = parent->GetRenderer();
+		_UnPressedTexture = "DEFAULT_UNPRESSED_TEXTURE";
+		_PressedTexture = "DEFAULT_PRESSED_TEXTURE";
+		Texture::Inst()->Load ( DEFAULT_UNPRESSED_TEXTURE, _UnPressedTexture );
+		Texture::Inst()->Load (  DEFAULT_PRESSED_TEXTURE, _PressedTexture );
+		_Rect = parent->GetSize();
+		_Parent = parent;
+		
+		_Offset = parent->GetOffset();
+		_IsPressed = false;
+		_DrawDestRect = _Rect;
+		_DrawDestRect.SetX ( _Offset.GetX() );
+		_DrawDestRect.SetY ( _Offset.GetY() );
+		//berechnen label rect
+		_LabelRect.SetH ( _Rect.GetH() * 0.9 );
+		_LabelRect.SetW ( _Rect.GetW() * 0.9 );
+		_LabelRect.SetX ( (_Rect.GetW()* 0.1 / 2) +_Offset.GetX() );
+		_LabelRect.SetY ( (_Rect.GetH()* 0.1 / 2) +_Rect.GetH() );
+		LOG->INFO (LOG_CATEGORY_LIBGUI, "_LabelRect: %s", ID.c_str());
+		LOG->INFO (LOG_CATEGORY_LIBGUI, "   %d  %d  %d  %d", _LabelRect.GetX(),_LabelRect.GetY(),_LabelRect.GetW(),_LabelRect.GetH());
+		
+		parent->AddChild ( this, ID, width, height );
+		if ( width > 0 )
+			_Rect.SetW ( width );
+		if ( height > 0 )
+			_Rect.SetH ( height );
+		onClick = nullptr;
+		onPress = nullptr;
+		onSlideH = nullptr;
+		onSlideV = nullptr;
+		onRelease = nullptr;
+		onActivate = nullptr;
+		onDeactivate = nullptr;	
+		_IsCheckable = false;
+		_IsActive = false;
+		isFixedSize = true;
+}
 Renderer* PushButton::GetRenderer ( void )
 {
 	return _Renderer;
@@ -90,7 +132,7 @@ void PushButton::ChangeSize ( Rect rect )
 	if ( rect.GetW() <= 0 )
 	{
 		LOG->WARN (LOG_CATEGORY_LIBGUI,"Neue Breite von %s unter 0 (%d)", _ID.c_str(),rect.GetW() );	
-		_Rect.SetW (1);
+		//_Rect.SetW (1);
 	}
 	else
 	{
@@ -99,7 +141,7 @@ void PushButton::ChangeSize ( Rect rect )
 	if ( rect.GetH() <= 0 )
 	{
 		LOG->WARN (LOG_CATEGORY_LIBGUI,"Neue Höhe von %s unter 0 (%d)", _ID.c_str(),rect.GetH() );	
-		_Rect.SetH (1);
+		//_Rect.SetH (1);
 	}
 	else
 	{

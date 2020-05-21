@@ -45,6 +45,7 @@ public:
 	virtual Point		GetOffset		( void ) = 0;
 	
 	virtual bool		AddChild		( Widget *child, std::string ID ) = 0;
+	virtual bool		AddChild		( Widget *child, std::string ID, int width, int height ) = 0;
 	virtual bool		ChangeChild 	( std::string ID ) = 0;
 	virtual void		ChangeSize		( Rect rect ) = 0;
 	virtual void		ChangeOffset	( Point offset ) = 0;

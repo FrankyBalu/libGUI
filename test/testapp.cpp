@@ -64,14 +64,24 @@ int main ()
 	InfoButton->LabelPressed ( "System", 255, 255, 255);
 	InfoButton->LabelUnPressed ( "System", 255, 255, 255);
 	
-	std::cout << "in test\n";
 	LIBGUI::VBox SystemWidget ( MainWindow, SYSTEMWIDGET);
 	LIBGUI::VBox TerrariumWidget ( MainWindow, TERRARIUMWIDGET);
 	LIBGUI::VBox MusicWidegt ( MainWindow, MUSICWIDEGT);
 	LIBGUI::VBox InfoWidget ( MainWindow, INFOWIDGET);
-	std::cout << "in test2\n";
+	LIBGUI::PushButton PlayMusicOrdered (&MusicWidegt, "PlayMusicOrdered", -3,200);
+	PlayMusicOrdered.LabelPressed ("In Reihe", 0, 0, 0);
+	PlayMusicOrdered.LabelUnPressed ("In Reihe", 0, 0, 255);
+	LIBGUI::PushButton PlayMusicOrdered1 (&MusicWidegt, "PlayMusicOrdered1", -2, 100);
+	PlayMusicOrdered1.LabelPressed ("In Reihe 2", 0, 0, 0);
+	PlayMusicOrdered1.LabelUnPressed ("In Reihe 2", 0, 0, 255);
+	LIBGUI::PushButton PlayMusicRandom (&MusicWidegt, "PlayMusicRandom");
+	PlayMusicRandom.LabelPressed ("Zufall", 0, 0, 0);
+	PlayMusicRandom.LabelUnPressed ("Zufall", 0, 0, 255);
+	LIBGUI::PushButton PlayRadioB (&MusicWidegt, "PlayRadioMDR");
+	PlayRadioB.LabelPressed ("MDR Radio Sachsen Anhalt", 0, 0, 0);
+	PlayRadioB.LabelUnPressed ("MDR Radio Sachsen Anhalt", 0, 0, 255);
 	
-	LIBGUI::HBox HBox_MusicPlay ( &MusicWidegt, "HBox_MusicPlay");
+/*	LIBGUI::HBox HBox_MusicPlay ( &MusicWidegt, "HBox_MusicPlay");
 	LIBGUI::HBox HBox_MusicControl ( &MusicWidegt, "HBox_MusicControl");
 	LIBGUI::HBox HBox_RadioPlay ( &MusicWidegt, "HBox_RadioPlay");
 	LIBGUI::HBox HBox_VolumeControl ( &MusicWidegt, "HBox_VolumeControl");
@@ -97,13 +107,14 @@ int main ()
 	LIBGUI::PushButton PlayNext (&HBox_MusicControl, "PlayNext");
 	PlayNext.LabelPressed (">|", 0, 0, 0);
 	PlayNext.LabelUnPressed (">|", 0, 0, 255);
-	LIBGUI::PushButton VolUp (&HBox_VolumeControl, "VolUP");
+	LIBGUI::PushButton VolUp (&MusicWidegt, "VolUP", 40, 50);
 	VolUp.LabelPressed ("V++", 0, 0, 0);
 	VolUp.LabelUnPressed ("V++", 0, 0, 255);
 	LIBGUI::PushButton VolDown (&HBox_VolumeControl, "VolDown");
 	VolDown.LabelPressed ("V--", 0, 0, 0);
-	VolDown.LabelUnPressed ("V--", 0, 0, 255);
+	VolDown.LabelUnPressed ("V--", 0, 0, 255);*/
 	
+
 	MainWindow->GetRenderer()->SetDrawColor ( 205,102,29, 0 );
 	while ( MainWindow->IsOpen() )
 	{

@@ -76,9 +76,9 @@ bool HBox::AddChild	( Widget *child, std::string ID )
 		_ChildRect[element.first].SetX (off.GetX());
 		_ChildRect[element.first].SetW (rect.GetW());
 		_ChildRect[element.first].SetH (rect.GetH());
-		std::cout << _ID << " HBox::AddChild (" << element.first << std::endl;
+		/*std::cout << _ID << " HBox::AddChild (" << element.first << std::endl;
 		std::cout << "\t" << off.GetX() << "x" << off.GetY() << "    " << rect.GetW() << "x" << rect.GetH() << std::endl;
-		
+		*/
 		i++;
 	}
 	_ChildCount++;
@@ -111,17 +111,17 @@ void HBox::ProcessEvent	( Event *event )
 	event->data = _Parent;
 	for (std::pair<std::string,Widget*> element : _Child)
 	{
-		std::cout << _ID.c_str() << "::ProcessEvent"<< std::endl;
+	/*	std::cout << _ID.c_str() << "::ProcessEvent"<< std::endl;
 		std::cout << "\tevent->Point: " << event->X << "x"<< event->Y <<std::endl;
 		std::cout << "\t_ChildRect[" << element.first << "]->X: " << _ChildRect[element.first].GetX() << "    Y:" << _ChildRect[element.first].GetY() <<std::endl;
 		std::cout << "\t_ChildRect[" << element.first << "]->H: " << _ChildRect[element.first].GetH() << "    W:" << _ChildRect[element.first].GetW() <<std::endl;
-		Rect r = element.second->GetSize();
+		*/Rect r = element.second->GetSize();
 		Point p = element.second->GetOffset();
 		r.SetX(p.GetX());
 		r.SetY(p.GetY());
 		if ( r.PointIsIn ( Point (event->X, event->Y)))
 		{
-			std::cout << "\t\tIch bin drin" << _ID.c_str() << std::endl;
+			//std::cout << "\t\tIch bin drin" << _ID.c_str() << std::endl;
 			element.second->ProcessEvent (event);
 		}
 	}

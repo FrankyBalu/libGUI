@@ -44,6 +44,7 @@ public:
 	Renderer*   GetRenderer     ( void );
 	Rect	    GetSize	        ( void );
 	bool	    AddChild	    ( Widget *child, std::string ID );
+	bool	    AddChild	    ( Widget *child, std::string ID, int w, int h ){}
 	bool        ChangeChild     ( std::string ID );
 	void	    ChangeSize	    ( Rect rect );
 	void	    ProcessEvent	( Event *event );

@@ -54,6 +54,7 @@ public:
 	Rect		GetSize			( void );
 	Point		GetOffset		( void );
     bool		AddChild		( Widget *child, std::string ID );
+    bool		AddChild		( Widget *child, std::string ID, int w, int h ){}
 	bool		ChangeChild 	( std::string ID );
 	void		ChangeSize		( Rect rect );
 	void		ChangeOffset	( Point offset );

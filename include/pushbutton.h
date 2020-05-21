@@ -38,15 +38,18 @@ protected:
 	bool _IsPressed;
 	bool _IsCheckable;
 	bool _IsActive;
+	
+	bool isFixedSize;
 
 public:		
 	PushButton ( Widget *parent, std::string ID );
-	
+	PushButton ( Widget *parent, std::string ID, int width, int height );
 	
 	void MakeCheckable ( bool val );
 	Renderer* GetRenderer ( void );
 	Rect	GetSize	( void );
 	bool	AddChild	( Widget *child, std::string ID );
+	bool	AddChild	( Widget *child, std::string ID, int w, int h ){}
 	void	ChangeSize	( Rect rect );
 	void		ProcessEvent	( Event *event );
 	void	Update	( void );
